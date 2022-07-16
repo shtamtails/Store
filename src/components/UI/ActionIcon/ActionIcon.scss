@@ -1,0 +1,38 @@
+.action-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.action-icon-hover {
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
+
+.action-icon-outline {
+  border: 1px solid $c-black;
+}
+
+.action-icon-radius-xs {
+  border-radius: 2px;
+}
+
+.action-icon-radius-sm {
+  border-radius: 4px;
+}
+
+.action-icon-radius-md {
+  border-radius: 6px;
+}
+
+.action-icon-radius-lg {
+  border-radius: 8px;
+}
+
+.action-icon-radius-xl {
+  border-radius: 30px;
+}

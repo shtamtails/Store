@@ -1,0 +1,71 @@
+@import "scss/utils.scss";
+
+button {
+  margin-right: 5px;
+  font-family: "Source Sans Pro", sans-serif;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-size: 14px;
+  transition: 0.1s ease;
+  &:active {
+    transform: translateY(-1px);
+  }
+}
+
+.btn {
+  height: 45px;
+  width: 63px;
+}
+
+.fullwidth {
+  width: 100% !important;
+}
+
+.btn-xs {
+  height: 24px;
+  width: 24px;
+}
+
+.btn-sm {
+  width: 65px;
+  height: 45px;
+}
+
+.btn-md {
+  width: 140px;
+  height: 52px;
+}
+
+.btn-lg {
+  width: 290px;
+  height: 60px;
+}
+.btn-md,
+.btn-lg {
+  font-weight: 600;
+}
+
+.green {
+  background-color: $c-primary;
+  border: 1px solid $c-primary;
+  color: $c-white;
+}
+
+.black {
+  background-color: $c-black;
+  border: 1px solid $c-black;
+  color: $c-white;
+}
+
+.btn-primary {
+  border: none !important;
+}
+
+.btn-outline {
+  background-color: transparent !important;
+  color: $c-black !important;
+  border: 1px solid $c-black !important;
+}

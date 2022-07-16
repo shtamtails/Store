@@ -1,0 +1,29 @@
+.menu {
+  position: absolute;
+  inset: 0px auto auto 0px;
+}
+
+.currency-menu {
+  box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 17px 0px;
+  .currency-val {
+    margin: 0px;
+    padding: 0px 30px;
+    width: 100%;
+    font-family: "Raleway", sans-serif;
+    font-size: 18px;
+    background-color: #fff;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    &:hover {
+      background-color: #eeeeee;
+    }
+  }
+}
