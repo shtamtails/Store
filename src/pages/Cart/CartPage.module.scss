@@ -1,0 +1,15 @@
+.cart-footer {
+  padding: 30px 0px;
+  width: 280px;
+  .cart-footer-section {
+    display: flex;
+    padding: 5px 0px;
+    .cart-footer-section-label {
+      font-weight: 300;
+      width: 75px;
+    }
+    .cart-footer-section-info {
+      font-weight: 600;
+    }
+  }
+}

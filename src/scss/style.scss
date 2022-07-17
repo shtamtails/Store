@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&family=Source+Sans+Pro&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap");
+@import "../components/UI/Button/Button.scss";
+@import "../components/Business/Header/Header.scss";
+@import "../components/UI/ActionIcon/ActionIcon.scss";
+@import "../components/UI/Menu/Menu.scss";
+@import "../components/UI/Overlay/Overlay.scss";
+@import "../components/Business/Header/Menus/Cart/ItemCard.scss";
+@import "../components/Business/Header/Menus/Cart/CartMenu.module.scss";
+@import "../components/UI/Indicator/Indicator.module.scss";
+@import "../pages/Cart/CartPage.module.scss";
+@import "../components/Business/Cart/Cart.module.scss";
+@import "../components/UI/Slider/Slider.module.scss";
+@import "../pages/Content/Content.scss";
+@import "../components/Business/Content/ContentCard.module.scss";
+@import "../pages/Item/Item.module.scss";
+
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Raleway";
+  overflow-y: overlay;
+}
+
+footer {
+  height: 100px;
+  width: 100%;
+}
+
+.container {
+  margin: 0 auto;
+  width: 1200px;
+  @media (max-width: 1200px) {
+    width: 100%;
+  }
+}
+
+img {
+  -webkit-user-drag: none;
+}
+
+.overlay-container {
+  position: relative;
+  min-height: calc(100vh - 80px);
+}
+
+.section-title {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  font-size: 32px;
+  span {
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+}
+
+button,
+a,
+.action-icon {
+  &:active {
+    transform: translateY(-1px);
+  }
+}

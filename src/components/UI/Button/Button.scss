@@ -1,7 +1,7 @@
 @import "scss/utils.scss";
 
 button {
-  margin-right: 5px;
+  background-color: #fff;
   font-family: "Source Sans Pro", sans-serif;
   cursor: pointer;
   display: flex;
@@ -49,15 +49,15 @@ button {
 }
 
 .green {
-  background-color: $c-primary;
-  border: 1px solid $c-primary;
-  color: $c-white;
+  background-color: $c-primary !important;
+  border: 1px solid $c-primary !important;
+  color: $c-white !important;
 }
 
 .black {
-  background-color: $c-black;
-  border: 1px solid $c-black;
-  color: $c-white;
+  background-color: $c-black !important;
+  border: 1px solid $c-black !important;
+  color: $c-white !important;
 }
 
 .btn-primary {
@@ -65,7 +65,22 @@ button {
 }
 
 .btn-outline {
-  background-color: transparent !important;
-  color: $c-black !important;
-  border: 1px solid $c-black !important;
+  background-color: $c-white;
+  color: $c-black;
+  border: 1px solid $c-black;
+}
+
+.btn-color {
+  background-color: transparent;
+  border: none;
+  color: transparent;
+}
+
+.btn-color-white {
+  border: 1px solid $c-black;
+}
+
+.btn-selected {
+  border: 2px solid $c-white;
+  outline: 2px solid $c-primary;
 }

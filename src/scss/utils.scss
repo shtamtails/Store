@@ -5,3 +5,70 @@ $c-white: #ffffff;
 .flex {
   display: flex;
 }
+
+$sizes: "xs", "sm", "md", "lg", "xl";
+
+$spacing-map: (
+  xs: 5px,
+  sm: 10px,
+  md: 20px,
+  lg: 30px,
+  xl: 40px,
+);
+
+@mixin spacing-utility($attribute, $prefix: "-") {
+  @each $name, $value in $spacing-map {
+    &#{$prefix}#{$name} {
+      #{$attribute}: $value;
+    }
+  }
+
+  $newattribute: $attribute + "-bottom";
+  @each $name, $value in $spacing-map {
+    &-b#{$prefix}#{$name} {
+      #{$newattribute}: $value;
+    }
+  }
+  $newattribute: $attribute + "-top";
+  @each $name, $value in $spacing-map {
+    &-t#{$prefix}#{$name} {
+      #{$newattribute}: $value;
+    }
+  }
+
+  $newattribute: $attribute + "-left";
+  @each $name, $value in $spacing-map {
+    &-l#{$prefix}#{$name} {
+      #{$newattribute}: $value;
+    }
+  }
+
+  $newattribute: $attribute + "-right";
+  @each $name, $value in $spacing-map {
+    &-r#{$prefix}#{$name} {
+      #{$newattribute}: $value;
+    }
+  }
+
+  $newattribute: $attribute;
+  @each $name, $value in $spacing-map {
+    &-v#{$prefix}#{$name} {
+      #{$newattribute}: $value 0;
+    }
+  }
+
+  $newattribute: $attribute;
+  @each $name, $value in $spacing-map {
+    &-h#{$prefix}#{$name} {
+      #{$newattribute}: 0 $value;
+    }
+  }
+}
+
+.mg {
+  @include spacing-utility(margin);
+}
+
+.pd {
+  @include spacing-utility(padding);
+}

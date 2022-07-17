@@ -1,0 +1,31 @@
+.cart-menu {
+  width: 325px;
+  height: 677px;
+  height: 100%;
+  background-color: #fff;
+  font-family: "Raleway", sans-serif;
+  padding: 32px 15px;
+  .cart-menu-header {
+    span {
+      font-weight: 600;
+    }
+  }
+  .cart-menu-items {
+  }
+  .cart-menu-footer {
+    .cart-menu-footer-total {
+      padding-top: 10px;
+      padding-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+    }
+    .cart-menu-footer-buttons {
+      a {
+        width: 100%;
+        text-decoration: none;
+      }
+      display: flex;
+    }
+  }
+}

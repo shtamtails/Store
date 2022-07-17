@@ -1,0 +1,50 @@
+.content-card {
+  cursor: pointer;
+  position: relative;
+  width: 330px;
+  padding: 15px;
+  height: 400px;
+  &:hover {
+    box-shadow: (0px 4px 35px rgba(168, 172, 176, 0.19));
+  }
+  &:hover > .content-card-cart-btn {
+    visibility: visible;
+  }
+  .content-card-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
+    img {
+      width: 330px;
+      height: 330px;
+      object-fit: contain;
+    }
+  }
+  .content-card-cart-btn {
+    visibility: hidden;
+    position: absolute;
+    right: 30px;
+    bottom: 60px;
+    background-color: $c-primary;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .content-card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    .content-card-title {
+      padding: 10px 0px;
+      font-weight: 300;
+      font-size: 18px;
+    }
+    .content-card-price {
+      font-weight: 400;
+    }
+  }
+}

@@ -1,10 +1,12 @@
 .action-icon {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 40px;
   height: 40px;
   cursor: pointer;
+  z-index: 2;
 }
 
 .action-icon-hover {

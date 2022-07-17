@@ -1,0 +1,27 @@
+.slider-component {
+  object-fit: cover;
+  position: relative;
+  height: 100%;
+  .slider-item {
+    width: 200px;
+    height: 100%;
+    img {
+      transition: opacity 0.1ms ease;
+      width: 200px;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .slider-buttons {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    width: 60px;
+    justify-content: space-between;
+    display: flex;
+    button {
+      background-color: rgba(0, 0, 0, 0.7) !important;
+    }
+  }
+}
