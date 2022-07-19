@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 interface IndicatorProps {
   children?: string | JSX.Element;
@@ -8,22 +8,18 @@ interface IndicatorProps {
   left?: number;
 }
 
-interface IndicatorState {}
-
-export default class Indicator extends Component<IndicatorProps, IndicatorState> {
-  render() {
-    return (
-      <div
-        className="indicator"
-        style={{
-          top: `${this.props.top}px`,
-          right: `${this.props.right}px`,
-          bottom: `${this.props.bottom}px`,
-          left: `${this.props.left}px`,
-        }}
-      >
-        {this.props.children}
-      </div>
-    );
-  }
-}
+export const Indicator: React.FC<IndicatorProps> = ({ top, right, bottom, left, children }) => {
+  return (
+    <div
+      className="indicator"
+      style={{
+        top: `${top}px`,
+        right: `${right}px`,
+        bottom: `${bottom}px`,
+        left: `${left}px`,
+      }}
+    >
+      {children}
+    </div>
+  );
+};

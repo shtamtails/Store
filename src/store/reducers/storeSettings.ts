@@ -14,13 +14,13 @@ export const storeSettings = createSlice({
   name: "storeSettings",
   initialState,
   reducers: {
-    changeCurrency: (state: IStoreSettingsReducer, action: PayloadAction<string>) => {
+    setCurrency: (state: IStoreSettingsReducer, action: PayloadAction<string>) => {
       state.currency = action.payload;
     },
-    changeOverlay: (state: IStoreSettingsReducer, action: PayloadAction<boolean>) => {
+    setOverlay: (state: IStoreSettingsReducer, action: PayloadAction<boolean>) => {
       state.contentOverlay = action.payload;
     },
   },
 });
 
-export const { changeCurrency, changeOverlay } = storeSettings.actions;
+export const { setCurrency, setOverlay } = storeSettings.actions;

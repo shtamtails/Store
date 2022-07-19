@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 
-interface IMenuProps {
+interface MenuProps {
   parentRef: React.RefObject<HTMLDivElement>;
   visible: boolean;
   children: JSX.Element;
@@ -9,50 +9,36 @@ interface IMenuProps {
   innerRef?: React.RefObject<HTMLDivElement>;
 }
 
-interface IMenuState {
-  x: number;
-  y: number;
-}
+export const Menu: React.FC<MenuProps> = ({ parentRef, visible, children, offsetLeft, offsetTop, innerRef }) => {
+  const parent = parentRef.current;
+  const [x, setX] = useState<number>(0);
+  const [y, setY] = useState<number>(0);
 
-export default class Menu extends Component<IMenuProps, IMenuState> {
-  constructor(props: IMenuProps) {
-    super(props);
-    this.state = {
-      x: 0,
-      y: 0,
-    };
-    const updateSize = () => {
-      const parent = this.props.parentRef.current;
-      this.setState({
-        x: (parent?.offsetLeft && parent?.offsetLeft) || 0,
-        y: (parent?.offsetHeight && parent?.offsetTop + parent?.offsetHeight) || 0,
-      });
-    };
+  const updateSize = () => {
+    parent?.offsetLeft ? setX(offsetLeft ? parent.offsetLeft - offsetLeft : parent.offsetLeft) : setX(0);
+    parent?.offsetHeight
+      ? setY(offsetTop ? parent.offsetTop + parent.offsetHeight + offsetTop : parent.offsetTop + parent.offsetHeight)
+      : setY(0);
+  };
+
+  useEffect(() => {
+    parent && setX(offsetLeft ? parent.offsetLeft - offsetLeft : parent.offsetLeft);
+    parent &&
+      setY(offsetTop ? parent.offsetTop + parent.offsetHeight + offsetTop : parent.offsetTop + parent.offsetHeight);
     window.addEventListener("resize", updateSize);
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [parent]);
 
-  componentDidUpdate() {
-    const parent = this.props.parentRef.current;
-    if (parent?.offsetLeft && parent?.offsetLeft - (this.props.offsetLeft || 0) !== this.state.x) {
-      this.setState({
-        x: (parent?.offsetLeft && parent?.offsetLeft - (this.props.offsetLeft || 0)) || 0,
-        y: (parent?.offsetHeight && parent?.offsetTop + (this.props.offsetTop || parent?.offsetHeight)) || 0,
-      });
-    }
-  }
-
-  render() {
-    return (
-      <div
-        ref={this.props.innerRef}
-        className="menu"
-        style={{
-          transform: `translate3d(${this.state.x}px, ${this.state.y}px, 0px)`,
-          display: `${this.props.visible ? "block" : "none"}`,
-        }}
-      >
-        {this.props.children}
-      </div>
-    );
-  }
-}
+  return (
+    <div
+      ref={innerRef}
+      className="menu"
+      style={{
+        transform: `translate3d(${x}px, ${y}px, 0px)`,
+        display: `${visible ? "block" : "none"}`,
+      }}
+    >
+      {children}
+    </div>
+  );
+};

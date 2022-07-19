@@ -1,29 +1,27 @@
-import { Component } from "react";
+import React from "react";
 
-interface IActionIcon {
+interface ActionIconProps {
+  innerRef?: React.RefObject<HTMLDivElement>;
+  onClick?: Function;
   children: JSX.Element | string;
   type?: "hover" | "outline";
-  onClick?: Function;
   radius?: "xs" | "sm" | "md" | "lg" | "xl";
-  innerRef?: React.RefObject<HTMLDivElement>;
 }
 
-export default class ActionIcon extends Component<IActionIcon> {
-  render() {
-    let className = "action-icon";
-    this.props.type && (className += ` action-icon-${this.props.type} `);
-    this.props.radius && (className += ` action-icon-radius-${this.props.radius} `);
-    className = className.trim().replace(/\s\s+/g, " ");
-    return (
-      <div
-        ref={this.props.innerRef}
-        className={className}
-        onClick={() => {
-          this.props.onClick && this.props.onClick();
-        }}
-      >
-        {this.props.children}
-      </div>
-    );
-  }
-}
+export const ActionIcon: React.FC<ActionIconProps> = ({ innerRef, onClick, children, type, radius }) => {
+  let className = "action-icon";
+  type && (className += ` action-icon-${type}`);
+  radius && (className += ` action-icon-radius-${radius}`);
+  className = className.trim().replace(/\s\s+/g, " ");
+  return (
+    <div
+      ref={innerRef}
+      className={className}
+      onClick={() => {
+        onClick && onClick();
+      }}
+    >
+      {children}
+    </div>
+  );
+};

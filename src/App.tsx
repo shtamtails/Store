@@ -1,13 +1,12 @@
-import React, { ReactPropTypes } from "react";
+import React from "react";
 import "./scss/style.scss";
-import Header from "./components/Business/Header/Header";
-import Button from "./components/UI/Button/Button";
 import { Route, Routes } from "react-router-dom";
-import Cart from "pages/Cart/Cart";
-import Overlay from "components/UI/Overlay/Overlay";
 import { connect } from "react-redux";
-import Content from "pages/Content/Content";
-import Item from "pages/Item/Item";
+import { Header } from "components/Business/Header/Header";
+import { Overlay } from "components/UI/Overlay/Overlay";
+import { Content } from "pages/Content/Content";
+import { Item } from "pages/Item/Item";
+import { Cart } from "pages/Cart/Cart";
 
 class App extends React.Component<any, any> {
   render() {
