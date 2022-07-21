@@ -5,7 +5,6 @@ import { CurrencyMenu } from "./Menus/CurrencyMenu";
 import { CartMenu } from "./Menus/Cart/CartMenu";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
 import { setCurrency, setOverlay } from "store/reducers/storeSettings";
-import { clickOutsideHandler } from "utils/handleClickOutside";
 import { ArrowDown } from "components/Icons/ArrowDown";
 import { ArrowUp } from "components/Icons/ArrowUp";
 import { Cart } from "components/Icons/Cart";
@@ -15,6 +14,7 @@ import { Menu } from "components/UI/Menu/Menu";
 import { useQuery } from "@apollo/client";
 import { FETCH_CATEGORIES, FETCH_CURRENCIES } from "apollo/queries/storeAPI";
 import { uid } from "uid";
+import { useClickOutside } from "hooks/useClickOutside";
 
 export const Header: React.FC = () => {
   const { loading, error, data } = useQuery(FETCH_CATEGORIES);
@@ -48,16 +48,13 @@ export const Header: React.FC = () => {
     dispatch(setOverlay(false));
     setCartModal(false);
   };
-
-  useEffect(() => {
-    clickOutsideHandler(currencyMenuRef, () => {
-      setCurrencyModal(false);
-    });
-    clickOutsideHandler(cartMenuRef, () => {
-      dispatch(setOverlay(false));
-      setCartModal(false);
-    });
-  }, [dispatch]);
+  useClickOutside(currencyMenuRef, () => {
+    setCurrencyModal(false);
+  });
+  useClickOutside(cartMenuRef, () => {
+    dispatch(setOverlay(false));
+    setCartModal(false);
+  });
 
   return (
     <>
