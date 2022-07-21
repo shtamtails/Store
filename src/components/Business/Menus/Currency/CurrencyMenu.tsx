@@ -3,10 +3,7 @@ import { ICurrency } from "interface/IStore";
 import { useQuery } from "@apollo/client";
 import { FETCH_CURRENCIES } from "apollo/queries/storeAPI";
 import { uid } from "uid";
-
-interface CurrencyMenuProps {
-  handleCurrencyChange: Function;
-}
+import { CurrencyMenuProps } from "interface/ICurrencyMenu";
 
 export const CurrencyMenu: React.FC<CurrencyMenuProps> = ({ handleCurrencyChange }) => {
   const { loading: currenciesLoading, error: currenciesError, data: currenciesData } = useQuery(FETCH_CURRENCIES);

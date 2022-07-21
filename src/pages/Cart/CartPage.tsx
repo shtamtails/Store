@@ -1,7 +1,7 @@
 import { CartItem } from "components/Business/ItemCard/CartItem";
 import { Button } from "components/UI/Button/Button";
 
-export const Cart = () => {
+export const Cart: React.FC = () => {
   return (
     <>
       <div className="container">

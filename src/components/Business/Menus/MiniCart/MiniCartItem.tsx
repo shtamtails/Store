@@ -1,7 +1,7 @@
 import { Button } from "components/UI/Button/Button";
 import { useState } from "react";
 
-export const MiniCartItem = () => {
+export const MiniCartItem: React.FC = () => {
   const [qty, setQty] = useState(1);
 
   const handleQtyPlusClick = () => {

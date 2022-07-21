@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { CurrencyMenu } from "../../components/Business/Menus/Currency/CurrencyMenu";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
-import { setCurrency, setOverlay } from "store/reducers/storeSettings";
+import { setCurrency, setOverlay } from "store/slices/storeSettings";
 import { ArrowDown } from "components/UI/Icons/ArrowDown";
 import { ArrowUp } from "components/UI/Icons/ArrowUp";
 import { Cart } from "components/UI/Icons/Cart";
@@ -19,7 +19,7 @@ import { MiniCartMenu } from "components/Business/Menus/MiniCart/MiniCartMenu";
 export const Header: React.FC = () => {
   const { loading, error, data } = useQuery(FETCH_CATEGORIES);
 
-  const { contentOverlay, currency } = useAppSelector((store) => store.store);
+  const { contentOverlay, currency } = useAppSelector((store) => store.storeParams);
   const dispatch = useAppDispatch();
 
   const [currencyModal, setCurrencyModal] = useState(false);

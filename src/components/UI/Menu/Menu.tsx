@@ -1,13 +1,5 @@
+import { MenuProps } from "interface/UI/IMenu";
 import React, { useEffect, useState } from "react";
-
-interface MenuProps {
-  parentRef: React.RefObject<HTMLDivElement>;
-  visible: boolean;
-  children: JSX.Element;
-  offsetLeft?: number;
-  offsetTop?: number;
-  innerRef?: React.RefObject<HTMLDivElement>;
-}
 
 export const Menu: React.FC<MenuProps> = ({ parentRef, visible, children, offsetLeft, offsetTop, innerRef }) => {
   const parent = parentRef.current;

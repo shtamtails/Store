@@ -1,13 +1,10 @@
 import { Button } from "components/UI/Button/Button";
+import { MiniCartMenuProps } from "interface/IMiniCartMenu";
 import React from "react";
 import { Link } from "react-router-dom";
 import { MiniCartItem } from "./MiniCartItem";
 
-interface CartMenuProps {
-  onClose: Function;
-}
-
-export const MiniCartMenu: React.FC<CartMenuProps> = ({ onClose }) => {
+export const MiniCartMenu: React.FC<MiniCartMenuProps> = ({ onClose }) => {
   return (
     <div className="cart-menu">
       <div className="cart-menu-header">

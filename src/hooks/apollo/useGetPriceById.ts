@@ -14,7 +14,7 @@ export const useGetPriceById = (productID: string) => {
     },
   });
 
-  const { currency } = useAppSelector((store) => store.store);
+  const { currency } = useAppSelector((store) => store.storeParams);
   const price: number = priceData?.product.prices.filter((price: IPrice) => price.currency.symbol === currency)[0]
     .amount;
 

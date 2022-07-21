@@ -1,7 +1,7 @@
 import { Button } from "components/UI/Button/Button";
 import { Slider } from "components/UI/Slider/Slider";
 
-export const CartItem = () => {
+export const CartItem: React.FC = () => {
   const items = [
     {
       id: 0,

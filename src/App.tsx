@@ -12,7 +12,7 @@ import { uid } from "uid";
 import "./scss/style.scss";
 
 export const App = () => {
-  const { contentOverlay } = useAppSelector((store) => store.store);
+  const { contentOverlay } = useAppSelector((store) => store.storeParams);
   const { data: categoriesData } = useQuery(FETCH_CATEGORIES);
 
   return (
