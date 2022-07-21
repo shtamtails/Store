@@ -1,34 +1,35 @@
-import React from "react";
 import "./scss/style.scss";
 import { Route, Routes } from "react-router-dom";
-import { connect } from "react-redux";
 import { Header } from "components/Business/Header/Header";
 import { Overlay } from "components/UI/Overlay/Overlay";
-import { Content } from "pages/Content/Content";
 import { Item } from "pages/Item/Item";
 import { Cart } from "pages/Cart/Cart";
+import { useAppSelector } from "hooks/redux";
+import { useQuery } from "@apollo/client";
+import { FETCH_CATEGORIES } from "apollo/queries/storeAPI";
+import { ContentPage } from "pages/Content/ContentPage";
+import { ICategory } from "interface/IStore";
+import { uid } from "uid";
 
-class App extends React.Component<any, any> {
-  render() {
-    return (
-      <>
-        <Header />
-        <div className="overlay-container">
-          <Overlay visible={this.props.contentOverlay} />
-          <Routes>
-            <Route path="/" element={<Content />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/item/:id" element={<Item />} />
-          </Routes>
-          <footer></footer>
-        </div>
-      </>
-    );
-  }
-}
+export const App = () => {
+  const { contentOverlay } = useAppSelector((store) => store.store);
+  const { data: categoriesData } = useQuery(FETCH_CATEGORIES);
 
-const mapStateToProps = (state: any) => ({
-  contentOverlay: state.store.contentOverlay,
-});
-
-export default connect(mapStateToProps)(App);
+  return (
+    <>
+      <Header />
+      <div className="overlay-container">
+        <Overlay visible={contentOverlay} />
+        <Routes>
+          {categoriesData?.categories.map((category: ICategory) => (
+            <Route key={uid()} path={`/${category.name}`} element={<ContentPage category={category.name} />} />
+          ))}
+          <Route path="/" element={<ContentPage category="all" />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/item/:id" element={<Item />} />
+        </Routes>
+        <footer></footer>
+      </div>
+    </>
+  );
+};

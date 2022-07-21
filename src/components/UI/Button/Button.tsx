@@ -34,7 +34,7 @@ export const Button: React.FC<ButtonProps> = ({
   fullWidth && (tempClassName += " fullwidth ");
   className && (tempClassName += ` ${className} `);
   selected && (tempClassName += ` btn-selected `);
-  bgcolor && (bgcolor === "white" || bgcolor === "#ffffff" || bgcolor === "#fff") && (className += "btn-color-white");
+  bgcolor && bgcolor === "#FFFFFF" && (tempClassName += " btn-color-white ");
   tempClassName = tempClassName.trim().replace(/\s\s+/g, " ");
 
   return (

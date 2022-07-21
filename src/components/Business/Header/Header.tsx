@@ -12,8 +12,13 @@ import { Cart } from "components/Icons/Cart";
 import { ActionIcon } from "components/UI/ActionIcon/ActionIcon";
 import { Indicator } from "components/UI/Indicator/Indicator";
 import { Menu } from "components/UI/Menu/Menu";
+import { useQuery } from "@apollo/client";
+import { FETCH_CATEGORIES, FETCH_CURRENCIES } from "apollo/queries/storeAPI";
+import { uid } from "uid";
 
 export const Header: React.FC = () => {
+  const { loading, error, data } = useQuery(FETCH_CATEGORIES);
+
   const { contentOverlay, currency } = useAppSelector((store) => store.store);
   const dispatch = useAppDispatch();
 
@@ -59,15 +64,12 @@ export const Header: React.FC = () => {
       <div className="container">
         <header>
           <div className="header-navigation">
-            <NavLink to="/women" className={({ isActive }) => (isActive ? "active" : "")}>
-              Women
-            </NavLink>
-            <NavLink to="/men" className={({ isActive }) => (isActive ? "active" : "")}>
-              Men
-            </NavLink>
-            <NavLink to="/kids" className={({ isActive }) => (isActive ? "active" : "")}>
-              Kids
-            </NavLink>
+            {data &&
+              data.categories.map((category: any) => (
+                <NavLink key={uid()} to={`/${category.name}`} className={({ isActive }) => (isActive ? "active" : "")}>
+                  {category.name.toUpperCase()}
+                </NavLink>
+              ))}
           </div>
           <div className="header-logo">
             <div className="logo">
