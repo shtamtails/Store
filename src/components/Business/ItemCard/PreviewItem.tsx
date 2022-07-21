@@ -1,7 +1,6 @@
-import { Cart } from "components/Icons/Cart";
-import { useGetPriceById } from "hooks/apollo/getPriceById";
+import { Cart } from "components/UI/Icons/Cart";
+import { useGetPriceById } from "hooks/apollo/useGetPriceById";
 import { useAppSelector } from "hooks/redux";
-import { IPrice } from "interface/IStore";
 import React from "react";
 
 interface IContentCard {
@@ -11,7 +10,7 @@ interface IContentCard {
   name: string;
 }
 
-export const ContentCard: React.FC<IContentCard> = ({ id, image, brand, name }) => {
+export const PreviewItem: React.FC<IContentCard> = ({ id, image, brand, name }) => {
   const { currency } = useAppSelector((store) => store.store);
   const { price } = useGetPriceById(id);
 

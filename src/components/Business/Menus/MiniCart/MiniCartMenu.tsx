@@ -1,21 +1,21 @@
 import { Button } from "components/UI/Button/Button";
 import React from "react";
 import { Link } from "react-router-dom";
-import { ItemCard } from "./ItemCard";
+import { MiniCartItem } from "./MiniCartItem";
 
 interface CartMenuProps {
   onClose: Function;
 }
 
-export const CartMenu: React.FC<CartMenuProps> = ({ onClose }) => {
+export const MiniCartMenu: React.FC<CartMenuProps> = ({ onClose }) => {
   return (
     <div className="cart-menu">
       <div className="cart-menu-header">
         <span>My Bag</span>, 0 items
       </div>
       <div className="cart-menu-items">
-        <ItemCard />
-        <ItemCard />
+        <MiniCartItem />
+        <MiniCartItem />
       </div>
       <div className="cart-menu-footer">
         <div className="cart-menu-footer-total">

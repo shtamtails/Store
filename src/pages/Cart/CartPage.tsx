@@ -1,4 +1,4 @@
-import { CartItem } from "components/Business/Cart/CartItem";
+import { CartItem } from "components/Business/ItemCard/CartItem";
 import { Button } from "components/UI/Button/Button";
 
 export const Cart = () => {

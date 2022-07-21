@@ -1,7 +1,7 @@
 import { Button } from "components/UI/Button/Button";
-import React, { useState } from "react";
+import { useState } from "react";
 
-export const ItemCard = () => {
+export const MiniCartItem = () => {
   const [qty, setQty] = useState(1);
 
   const handleQtyPlusClick = () => {

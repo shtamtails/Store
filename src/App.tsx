@@ -1,15 +1,15 @@
-import "./scss/style.scss";
-import { Route, Routes } from "react-router-dom";
-import { Header } from "components/Business/Header/Header";
-import { Overlay } from "components/UI/Overlay/Overlay";
-import { Item } from "pages/Item/Item";
-import { Cart } from "pages/Cart/Cart";
-import { useAppSelector } from "hooks/redux";
 import { useQuery } from "@apollo/client";
 import { FETCH_CATEGORIES } from "apollo/queries/storeAPI";
-import { ContentPage } from "pages/Content/ContentPage";
+import { Overlay } from "components/UI/Overlay/Overlay";
+import { useAppSelector } from "hooks/redux";
 import { ICategory } from "interface/IStore";
+import { Cart } from "pages/Cart/CartPage";
+import { ContentPage } from "pages/Content/ContentPage";
+import { Header } from "pages/Header/Header";
+import { Item } from "pages/Item/ItemPage";
+import { Routes, Route } from "react-router-dom";
 import { uid } from "uid";
+import "./scss/style.scss";
 
 export const App = () => {
   const { contentOverlay } = useAppSelector((store) => store.store);

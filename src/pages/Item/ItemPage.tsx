@@ -1,8 +1,8 @@
 import { useQuery } from "@apollo/client";
 import { FETCH_PRODUCT_INFO_BY_ID } from "apollo/queries/storeAPI";
 import { Button } from "components/UI/Button/Button";
-import { useGetPriceById } from "hooks/apollo/getPriceById";
-import { IAttribute, IAttributeSet, IProduct } from "interface/IStore";
+import { useGetPriceById } from "hooks/apollo/useGetPriceById";
+import { IProduct } from "interface/IStore";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import DOMPurify from "dompurify";

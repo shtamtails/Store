@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { FETCH_PRODUCTS_BY_CATEGORY } from "apollo/queries/storeAPI";
-import { ContentCard } from "components/Business/Content/ContentCard";
+import { PreviewItem } from "components/Business/ItemCard/PreviewItem";
 import { IProduct } from "interface/IStore";
 import { Link } from "react-router-dom";
 
@@ -27,7 +27,7 @@ export const ContentPage: React.FC<ContentPageProps> = ({ category }) => {
         <div className="content-items">
           {products?.map((product) => (
             <Link key={product.id} to={`/item/${product.id}`}>
-              <ContentCard id={product.id} image={product.gallery[0]} brand={product.brand} name={product.name} />
+              <PreviewItem id={product.id} image={product.gallery[0]} brand={product.brand} name={product.name} />
             </Link>
           ))}
         </div>

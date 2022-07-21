@@ -1,20 +1,20 @@
-import { ReactComponent as Logo } from "../../Icons/Logo.svg";
-import React, { useEffect, useRef, useState } from "react";
+import { ReactComponent as Logo } from "components/UI/Icons/Logo.svg";
+import React, { useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { CurrencyMenu } from "./Menus/CurrencyMenu";
-import { CartMenu } from "./Menus/Cart/CartMenu";
+import { CurrencyMenu } from "../../components/Business/Menus/Currency/CurrencyMenu";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
 import { setCurrency, setOverlay } from "store/reducers/storeSettings";
-import { ArrowDown } from "components/Icons/ArrowDown";
-import { ArrowUp } from "components/Icons/ArrowUp";
-import { Cart } from "components/Icons/Cart";
+import { ArrowDown } from "components/UI/Icons/ArrowDown";
+import { ArrowUp } from "components/UI/Icons/ArrowUp";
+import { Cart } from "components/UI/Icons/Cart";
 import { ActionIcon } from "components/UI/ActionIcon/ActionIcon";
 import { Indicator } from "components/UI/Indicator/Indicator";
 import { Menu } from "components/UI/Menu/Menu";
 import { useQuery } from "@apollo/client";
-import { FETCH_CATEGORIES, FETCH_CURRENCIES } from "apollo/queries/storeAPI";
+import { FETCH_CATEGORIES } from "apollo/queries/storeAPI";
 import { uid } from "uid";
 import { useClickOutside } from "hooks/useClickOutside";
+import { MiniCartMenu } from "components/Business/Menus/MiniCart/MiniCartMenu";
 
 export const Header: React.FC = () => {
   const { loading, error, data } = useQuery(FETCH_CATEGORIES);
@@ -110,7 +110,7 @@ export const Header: React.FC = () => {
           <CurrencyMenu handleCurrencyChange={handleCurrencyChange} />
         </Menu>
         <Menu parentRef={cartIconRef} innerRef={cartMenuRef} visible={cartModal} offsetLeft={300}>
-          <CartMenu
+          <MiniCartMenu
             onClose={() => {
               handleCartClose();
             }}
