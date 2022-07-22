@@ -6,25 +6,57 @@ import { IProduct } from "interface/IStore";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import DOMPurify from "dompurify";
+import { useAppDispatch, useAppSelector } from "hooks/redux";
+import { addItemToCart, increaseAmount } from "store/slices/cart";
+import { ICartItems } from "interface/ICart";
+
+export interface ISelectedAttributes {
+  [key: string]: string;
+}
 
 export const Item: React.FC = () => {
   const [currentImage, setCurrentImage] = useState<number>(0);
+  const [selectedAttributes, setSelectedAttributes] = useState<ISelectedAttributes>({});
+  // get id passed by react router
   const params = useParams();
   const id = params.id!;
-  const { price, currency } = useGetPriceById(id);
-
+  // get cart array from react redux
+  const dispatch = useAppDispatch();
+  const { cart } = useAppSelector((store) => store.cart);
+  // get product info by id
   const { data } = useQuery(FETCH_PRODUCT_INFO_BY_ID, {
     variables: {
       id: id,
     },
   });
+  const { price, currency } = useGetPriceById(id);
   const productInfo: IProduct = data?.product;
   const attributes = productInfo?.attributes;
+
+  const handleOptionClick = (name: string, value: string) => {
+    setSelectedAttributes({
+      ...selectedAttributes,
+      [name]: value,
+    });
+  };
+
+  const handleAddToCart = () => {
+    const item = {
+      orderId: id + JSON.stringify(selectedAttributes), // Unique id for item with specified attributes
+      id: id,
+      attributes: selectedAttributes,
+      amount: 1,
+    };
+
+    const order: ICartItems = cart.filter((el: ICartItems) => el.orderId === item.orderId)[0]; // check if order already exist
+    order ? dispatch(increaseAmount(item.orderId)) : dispatch(addItemToCart(item)); // if order with orderid and attributes exists increase amount, else add item
+  };
 
   const handleSmallImageClick = (id: number) => {
     setCurrentImage(id);
   };
 
+  // used to place in description HTML code, funciton below sanitizes it from dangerous/malwarous code
   const sanitizedDescription = () => ({
     __html: DOMPurify.sanitize(productInfo?.description),
   });
@@ -34,20 +66,18 @@ export const Item: React.FC = () => {
       <div className="item">
         <div className="item-images">
           <div className="item-images-small">
-            {productInfo?.gallery.map((el, i) => {
-              return (
-                <div key={i} className="item-images-small-image">
-                  <img
-                    key={i}
-                    src={el}
-                    alt=""
-                    onClick={() => {
-                      handleSmallImageClick(i);
-                    }}
-                  />
-                </div>
-              );
-            })}
+            {productInfo?.gallery.map((el, i) => (
+              <div key={i} className="item-images-small-image">
+                <img
+                  key={i}
+                  src={el}
+                  alt=""
+                  onClick={() => {
+                    handleSmallImageClick(i);
+                  }}
+                />
+              </div>
+            ))}
           </div>
           <div className="item-images-full">
             <img src={productInfo?.gallery[currentImage]} alt="" />
@@ -62,7 +92,16 @@ export const Item: React.FC = () => {
               <div className="item-info-setting-content">
                 {attribute?.type === "text" &&
                   attribute?.items.map((el) => (
-                    <Button key={el.id} size="sm" type="outline" className="mg-r-sm">
+                    <Button
+                      key={el.id}
+                      size="sm"
+                      type="outline"
+                      className="mg-r-sm"
+                      color={selectedAttributes[attribute.name] === el.value ? "black" : ""}
+                      onClick={() => {
+                        handleOptionClick(attribute.name, el.value);
+                      }}
+                    >
                       {el.displayValue}
                     </Button>
                   ))}
@@ -77,7 +116,10 @@ export const Item: React.FC = () => {
                       className="mg-r-sm"
                       height={32}
                       width={32}
-                      // selected
+                      onClick={() => {
+                        handleOptionClick(attribute.name, el.value);
+                      }}
+                      selected={selectedAttributes[attribute.name] === el.value}
                     />
                   ))}
               </div>
@@ -89,7 +131,15 @@ export const Item: React.FC = () => {
             <div className="item-info-price-total"></div>
           </div>
           <div className="item-info-checkout">
-            <Button type="primary" color="green" size="md" fullWidth>
+            <Button
+              type="primary"
+              color="green"
+              size="md"
+              fullWidth
+              onClick={() => {
+                handleAddToCart();
+              }}
+            >
               ADD TO CART
             </Button>
           </div>

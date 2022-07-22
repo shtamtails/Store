@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { ICurrency } from "interface/IStore";
 import { useQuery } from "@apollo/client";
 import { FETCH_CURRENCIES } from "apollo/queries/storeAPI";

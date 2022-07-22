@@ -19,6 +19,8 @@ import { MiniCartMenu } from "components/Business/Menus/MiniCart/MiniCartMenu";
 export const Header: React.FC = () => {
   const { loading, error, data } = useQuery(FETCH_CATEGORIES);
 
+  const { cart } = useAppSelector((store) => store.cart);
+
   const { contentOverlay, currency } = useAppSelector((store) => store.storeParams);
   const dispatch = useAppDispatch();
 
@@ -100,7 +102,7 @@ export const Header: React.FC = () => {
               >
                 <>
                   <Cart />
-                  <Indicator>3</Indicator>
+                  {cart.length > 0 && <Indicator>{cart.length}</Indicator>}
                 </>
               </ActionIcon>
             </div>
