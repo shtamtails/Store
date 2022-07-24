@@ -1,5 +1,5 @@
-GHPages: https://shtamtails.github.io/TEST_Store/ (pre-alpha build. Missing some features)
-GraphQL endpoint: https://github.com/scandiweb/junior-react-endpoint  
+GHPages: https://shtamtails.github.io/TEST_Store/ (pre-alpha build. Missing some features) <br>
+GraphQL endpoint: https://github.com/scandiweb/junior-react-endpoint <br>
 Did not sumbit assignment because of requirement of only class components (refuse want to work fulltime with legacy tehcnologies). But task was really interesting so i decided to complete it using functional components.
 
 ## Required:
