@@ -6,6 +6,14 @@ $c-white: #ffffff;
   display: flex;
 }
 
+.jcsb {
+  justify-content: space-between;
+}
+
+.jcc {
+  justify-content: center;
+}
+
 $sizes: "xs", "sm", "md", "lg", "xl";
 
 $spacing-map: (

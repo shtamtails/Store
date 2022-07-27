@@ -1,0 +1,19 @@
+.skeleton {
+  animation: skeleton-loading 0.7s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: #eaeaef;
+  }
+
+  100% {
+    background-color: #dcdce4;
+  }
+}
+
+.skeleton-container {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}

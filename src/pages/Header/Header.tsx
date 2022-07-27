@@ -15,6 +15,7 @@ import { FETCH_CATEGORIES } from "apollo/queries/storeAPI";
 import { uid } from "uid";
 import { useClickOutside } from "hooks/useClickOutside";
 import { MiniCartMenu } from "components/Business/Menus/MiniCart/MiniCartMenu";
+import { Skeleton } from "components/UI/Skeleton/Skeleton";
 
 export const Header: React.FC = () => {
   const { loading, error, data } = useQuery(FETCH_CATEGORIES);
@@ -63,6 +64,13 @@ export const Header: React.FC = () => {
       <div className="container">
         <header>
           <div className="header-navigation">
+            {loading && (
+              <div className="flex">
+                <Skeleton height="20px" width="80px" radius={0} style={{ margin: "0 20px" }} />
+                <Skeleton height="20px" width="80px" radius={0} style={{ margin: "0 20px" }} />
+                <Skeleton height="20px" width="80px" radius={0} style={{ margin: "0 20px" }} />
+              </div>
+            )}
             {data &&
               data.categories.map((category: any) => (
                 <NavLink key={uid()} to={`/${category.name}`} className={({ isActive }) => (isActive ? "active" : "")}>

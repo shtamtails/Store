@@ -1,5 +1,4 @@
 import { Button } from "components/UI/Button/Button";
-import { useGetPriceById } from "hooks/apollo/useGetPriceById";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
 import { ICartItems } from "interface/ICart";
 import { MiniCartMenuProps } from "interface/IMiniCartMenu";

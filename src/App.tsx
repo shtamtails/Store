@@ -6,7 +6,7 @@ import { ICategory } from "interface/IStore";
 import { Cart } from "pages/Cart/CartPage";
 import { ContentPage } from "pages/Content/ContentPage";
 import { Header } from "pages/Header/Header";
-import { Item } from "pages/Item/ItemPage";
+import { ProductPage } from "pages/Product/ProductPage";
 import { Routes, Route } from "react-router-dom";
 import { uid } from "uid";
 import "./scss/style.scss";
@@ -26,7 +26,7 @@ export const App = () => {
           ))}
           <Route path="/" element={<ContentPage category="all" />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/item/:id" element={<Item />} />
+          <Route path="/item/:id" element={<ProductPage />} />
         </Routes>
         <footer></footer>
       </div>

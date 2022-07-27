@@ -15,11 +15,13 @@
 @import "../components/UI/Menu/Menu.module.scss";
 @import "../components/UI/Overlay/Overlay.module.scss";
 @import "../components/UI/Slider/Slider.module.scss";
+@import "../components/UI/Loader/Loader";
+@import "../components/UI/Skeleton/Skeleton";
 
 @import "../pages/Cart/CartPage.module.scss";
 @import "../pages/Content/ContentPage.module.scss";
 @import "../pages/Header/Header.module.scss";
-@import "../pages/Item/ItemPage.module.scss";
+@import "../pages/Product/ProductPage.scss";
 
 body {
   padding: 0;
