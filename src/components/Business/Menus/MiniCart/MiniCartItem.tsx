@@ -5,6 +5,7 @@ import { useGetPriceById } from "hooks/apollo/useGetPriceById";
 import { useAppDispatch } from "hooks/redux";
 import { MiniCartItems } from "interface/IMiniCartMenu";
 import { IProduct } from "interface/IStore";
+import { useEffect } from "react";
 import { decreaseAmount, increaseAmount } from "store/slices/cart";
 
 export const MiniCartItem: React.FC<MiniCartItems> = ({ id, selectedAttributes, amount }) => {
@@ -19,8 +20,6 @@ export const MiniCartItem: React.FC<MiniCartItems> = ({ id, selectedAttributes, 
   const productInfo: IProduct = data?.product;
   const attributes = productInfo?.attributes;
   const { price, currency } = useGetPriceById(id);
-
-  console.log(selectedAttributes);
 
   const handleQtyPlusClick = () => {
     dispatch(increaseAmount(id + JSON.stringify(selectedAttributes)));

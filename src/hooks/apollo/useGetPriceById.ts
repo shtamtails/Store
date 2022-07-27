@@ -3,7 +3,7 @@ import { FETCH_PRICE_BY_ID } from "apollo/queries/storeAPI";
 import { useAppSelector } from "hooks/redux";
 import { IPrice } from "interface/IStore";
 
-export const useGetPriceById = (productID: string) => {
+export const useGetPriceById = (productID: string, prices?: IPrice[]) => {
   const {
     loading: priceLoading,
     error: priceError,
@@ -15,8 +15,9 @@ export const useGetPriceById = (productID: string) => {
   });
 
   const { currency } = useAppSelector((store) => store.storeParams);
-  const price: number = priceData?.product.prices.filter((price: IPrice) => price.currency.symbol === currency)[0]
-    .amount;
+  const price: number = prices
+    ? prices.filter((price: IPrice) => price.currency.symbol === currency)[0].amount
+    : priceData?.product.prices.filter((price: IPrice) => price.currency.symbol === currency)[0].amount;
 
   return { price, currency };
 };

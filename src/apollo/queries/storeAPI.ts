@@ -66,6 +66,13 @@ export const FETCH_PRODUCT_INFO_BY_ID = gql`
         }
       }
       brand
+      prices {
+        currency {
+          label
+          symbol
+        }
+        amount
+      }
     }
   }
 `;

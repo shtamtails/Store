@@ -32,7 +32,6 @@ export const Item: React.FC = () => {
   const { price, currency } = useGetPriceById(id);
   const productInfo: IProduct = data?.product;
   const attributes = productInfo?.attributes;
-
   const handleOptionClick = (name: string, value: string) => {
     setSelectedAttributes({
       ...selectedAttributes,
@@ -46,6 +45,7 @@ export const Item: React.FC = () => {
       id: id,
       attributes: selectedAttributes,
       amount: 1,
+      price: productInfo.prices,
     };
 
     const order: ICartItems = cart.filter((el: ICartItems) => el.orderId === item.orderId)[0]; // check if order already exist

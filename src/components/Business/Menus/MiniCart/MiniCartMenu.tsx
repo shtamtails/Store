@@ -1,14 +1,30 @@
 import { Button } from "components/UI/Button/Button";
-import { useAppSelector } from "hooks/redux";
+import { useGetPriceById } from "hooks/apollo/useGetPriceById";
+import { useAppDispatch, useAppSelector } from "hooks/redux";
 import { ICartItems } from "interface/ICart";
 import { MiniCartMenuProps } from "interface/IMiniCartMenu";
-import React from "react";
+import { IPrice } from "interface/IStore";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { addTotal, resetTotal } from "store/slices/cart";
 import { uid } from "uid";
 import { MiniCartItem } from "./MiniCartItem";
 
 export const MiniCartMenu: React.FC<MiniCartMenuProps> = ({ onClose }) => {
-  const { cart } = useAppSelector((store) => store.cart);
+  const { cart, total } = useAppSelector((store) => store.cart);
+  const { currency } = useAppSelector((store) => store.storeParams);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(resetTotal());
+    cart.map((item: ICartItems) => {
+      const prices = item.price;
+      const amount = item.amount;
+      const price = prices.filter((price: IPrice) => price.currency.symbol === currency)[0].amount;
+      dispatch(addTotal(price * amount));
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cart, currency]);
 
   return (
     <div className="cart-menu">
@@ -23,7 +39,9 @@ export const MiniCartMenu: React.FC<MiniCartMenuProps> = ({ onClose }) => {
       <div className="cart-menu-footer">
         <div className="cart-menu-footer-total">
           <div className="cart-menu-footer-total-text">Total</div>
-          <div className="cart-menu-footer-total-price">$200.00</div>
+          <div className="cart-menu-footer-total-price">
+            {currency} {total}
+          </div>
         </div>
         <div className="cart-menu-footer-buttons">
           <Link to="/cart">
