@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ICart, ICartItems } from "interface/ICart";
 
-const initialState = {
+const initialState: ICart = {
   cart: [],
   total: 0,
 };
@@ -28,7 +28,13 @@ export const cart = createSlice({
     resetTotal: (state: ICart) => {
       state.total = 0;
     },
+    setCart: (state: ICart, action: PayloadAction<ICart>) => {
+      console.log(action.payload.cart);
+      state.cart = action.payload.cart;
+      state.total = action.payload.total;
+    },
   },
 });
 
-export const { addItemToCart, removeItemFromCart, increaseAmount, decreaseAmount, addTotal, resetTotal } = cart.actions;
+export const { addItemToCart, removeItemFromCart, increaseAmount, decreaseAmount, addTotal, resetTotal, setCart } =
+  cart.actions;

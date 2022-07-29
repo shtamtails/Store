@@ -93,32 +93,3 @@ export const CartItem: React.FC<CartItems> = ({ id, selectedAttributes, amount }
     </div>
   );
 };
-
-{
-  /* <div className="cart-item-card-settings">
-SIZE:
-<div className="cart-item-card-buttons">
-  <Button size="sm" type="outline" className="mg-r-sm">
-    XS
-  </Button>
-  <Button size="sm" type="outline" color="black" className="mg-r-sm">
-    s
-  </Button>
-  <Button size="sm" type="outline" className="mg-r-sm">
-    M
-  </Button>
-  <Button size="sm" type="outline" className="mg-r-sm">
-    L
-  </Button>
-</div>
-</div>
-<div className="cart-item-card-settings">
-COLOR:
-<div className="cart-item-card-buttons">
-  <Button size="xs" type="color" className="mg-r-sm" bgcolor="#d3d2d5" height={32} width={32} />
-  <Button size="xs" type="color" className="mg-r-sm" bgcolor="black" height={32} width={32} />
-  <Button size="xs" type="color" className="mg-r-sm" bgcolor="white" height={32} width={32} />
-  <Button size="xs" type="color" className="mg-r-sm" bgcolor="#0F6450" selected height={32} width={32} />
-</div>
-</div> */
-}
