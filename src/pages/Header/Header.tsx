@@ -1,5 +1,5 @@
 import { ReactComponent as Logo } from "components/UI/Icons/Logo.svg";
-import React, { useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { CurrencyMenu } from "../../components/Business/Menus/Currency/CurrencyMenu";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
@@ -16,9 +16,10 @@ import { uid } from "uid";
 import { useClickOutside } from "hooks/useClickOutside";
 import { MiniCartMenu } from "components/Business/Menus/MiniCart/MiniCartMenu";
 import { Skeleton } from "components/UI/Skeleton/Skeleton";
+import { getTotalAmount } from "utils/getTotalAmount";
 
 export const Header: React.FC = () => {
-  const { loading, error, data } = useQuery(FETCH_CATEGORIES);
+  const { loading, data } = useQuery(FETCH_CATEGORIES);
 
   const { cart } = useAppSelector((store) => store.cart);
 
@@ -58,6 +59,8 @@ export const Header: React.FC = () => {
     dispatch(setOverlay(false));
     setCartModal(false);
   });
+
+  const totalAmount = useMemo(() => getTotalAmount(cart), [cart]);
 
   return (
     <>
@@ -110,7 +113,7 @@ export const Header: React.FC = () => {
               >
                 <>
                   <Cart />
-                  {cart.length > 0 && <Indicator>{cart.length}</Indicator>}
+                  {totalAmount > 0 && <Indicator>{totalAmount}</Indicator>}
                 </>
               </ActionIcon>
             </div>

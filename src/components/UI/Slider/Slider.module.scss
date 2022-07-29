@@ -1,5 +1,4 @@
 .slider-component {
-  object-fit: cover;
   position: relative;
   height: 100%;
   .slider-item {
@@ -9,7 +8,7 @@
       transition: opacity 0.1ms ease;
       width: 200px;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
     }
   }
 

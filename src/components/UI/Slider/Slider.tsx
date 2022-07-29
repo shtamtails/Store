@@ -1,10 +1,9 @@
-import { SliderProps, SliderItems } from "interface/UI/ISlider";
+import { SliderProps } from "interface/UI/ISlider";
 import React, { useState } from "react";
 import { Button } from "../Button/Button";
 
 export const Slider: React.FC<SliderProps> = ({ items }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const currentDisplayedSlide = items.filter((el: SliderItems) => el.id === currentSlide);
 
   const handlePlusClick = () => {
     if (currentSlide !== items.length - 1) {
@@ -25,7 +24,7 @@ export const Slider: React.FC<SliderProps> = ({ items }) => {
   return (
     <div className="slider-component">
       <div className="slider-item">
-        <img src={currentDisplayedSlide[0].src} alt="" />
+        <img src={items[currentSlide]} alt="" />
       </div>
       <div className="slider-buttons">
         <Button

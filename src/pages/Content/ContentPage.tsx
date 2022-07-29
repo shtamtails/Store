@@ -2,8 +2,6 @@ import { useQuery } from "@apollo/client";
 import { FETCH_PRODUCTS_BY_CATEGORY } from "apollo/queries/storeAPI";
 import { PreviewItem } from "components/Business/ItemCard/PreviewItem";
 import { Loader } from "components/UI/Loader/Loader";
-import { Overlay } from "components/UI/Overlay/Overlay";
-import { Skeleton } from "components/UI/Skeleton/Skeleton";
 import { IProduct } from "interface/IStore";
 import { ContentPageProps } from "interface/Pages/IContentPage";
 import { Link } from "react-router-dom";

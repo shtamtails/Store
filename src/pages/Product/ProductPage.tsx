@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from "hooks/redux";
 import { addItemToCart, increaseAmount } from "store/slices/cart";
 import { ICartItems } from "interface/ICart";
 import { Loader } from "components/UI/Loader/Loader";
+import { getTotalAmount } from "utils/getTotalAmount";
 
 export interface ISelectedAttributes {
   [key: string]: string;

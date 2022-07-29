@@ -1,4 +1,8 @@
 .cart-item-card {
+  a {
+    text-decoration: none;
+    color: #000000;
+  }
   border-top: 1px solid #e5e5e5;
   padding: 20px 0px;
   display: flex;

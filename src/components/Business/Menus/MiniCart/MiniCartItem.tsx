@@ -3,12 +3,12 @@ import { FETCH_PRODUCT_INFO_BY_ID } from "apollo/queries/storeAPI";
 import { Button } from "components/UI/Button/Button";
 import { useGetPriceById } from "hooks/apollo/useGetPriceById";
 import { useAppDispatch } from "hooks/redux";
-import { MiniCartItems } from "interface/IMiniCartMenu";
+import { CartItems } from "interface/IMiniCartMenu";
 import { IProduct } from "interface/IStore";
 import { useEffect } from "react";
 import { decreaseAmount, increaseAmount } from "store/slices/cart";
 
-export const MiniCartItem: React.FC<MiniCartItems> = ({ id, selectedAttributes, amount }) => {
+export const MiniCartItem: React.FC<CartItems> = ({ id, selectedAttributes, amount }) => {
   const dispatch = useAppDispatch();
 
   const { data } = useQuery(FETCH_PRODUCT_INFO_BY_ID, {
@@ -56,45 +56,35 @@ export const MiniCartItem: React.FC<MiniCartItems> = ({ id, selectedAttributes, 
                     {el.displayValue}
                   </Button>
                 ))}
-
-              {attribute?.type === "swatch" &&
-                attribute?.items.map((el) => (
-                  <Button
-                    key={el.id}
-                    size="xs"
-                    type="color"
-                    bgcolor={el.value}
-                    className="mg-r-sm"
-                    selected={selectedAttributes[attribute.name] === el.value}
-                  />
-                ))}
             </div>
           </div>
         ))}
       </div>
-      <div className="cart-menu-qty-controls">
-        <Button
-          size="xs"
-          type="outline"
-          onClick={() => {
-            handleQtyPlusClick();
-          }}
-        >
-          +
-        </Button>
-        <div className="cart-menu-qty-controls-qty">{amount}</div>
-        <Button
-          size="xs"
-          type="outline"
-          onClick={() => {
-            handleQtyMinusClick();
-          }}
-        >
-          -
-        </Button>
-      </div>
-      <div className="cart-menu-card-image">
-        <img src={productInfo?.gallery[0]} alt={productInfo?.name} />
+      <div className="minicart-right-section">
+        <div className="minicart-qty-controls">
+          <Button
+            size="xs"
+            type="outline"
+            onClick={() => {
+              handleQtyPlusClick();
+            }}
+          >
+            +
+          </Button>
+          <div className="minicart-qty">{amount}</div>
+          <Button
+            size="xs"
+            type="outline"
+            onClick={() => {
+              handleQtyMinusClick();
+            }}
+          >
+            -
+          </Button>
+        </div>
+        <div className="minicart-image">
+          <img src={productInfo?.gallery[0]} alt={productInfo?.name} />
+        </div>
       </div>
     </div>
   );
