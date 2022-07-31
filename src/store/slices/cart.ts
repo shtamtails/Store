@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ICart, ICartItems } from "interface/ICart";
+import { ICart, ICartItem } from "interface/ICart";
 
 const initialState: ICart = {
   cart: [],
@@ -10,7 +10,7 @@ export const cart = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addItemToCart: (state: ICart, action: PayloadAction<ICartItems>) => {
+    addItemToCart: (state: ICart, action: PayloadAction<ICartItem>) => {
       state.cart.push(action.payload);
     },
     removeItemFromCart: (state: ICart, action: PayloadAction<string>) => {
@@ -29,7 +29,6 @@ export const cart = createSlice({
       state.total = 0;
     },
     setCart: (state: ICart, action: PayloadAction<ICart>) => {
-      console.log(action.payload.cart);
       state.cart = action.payload.cart;
       state.total = action.payload.total;
     },

@@ -29,7 +29,7 @@
   .minicart-right-section {
     display: flex;
     .minicart-qty-controls {
-      margin: 0px 8px;
+      margin: 2px 8px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -47,27 +47,6 @@
         height: 100%;
         object-fit: contain;
       }
-    }
-  }
-
-  .cart-menu-qty-controls {
-    margin: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    .cart-menu-qty-controls-qty {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 500;
-    }
-  }
-
-  .cart-menu-card-image {
-    img {
-      width: 120px;
-      height: 100%;
-      object-fit: contain;
     }
   }
 }

@@ -23,9 +23,7 @@ export const Slider: React.FC<SliderProps> = ({ items }) => {
 
   return (
     <div className="slider-component">
-      <div className="slider-item">
-        <img src={items[currentSlide]} alt="" />
-      </div>
+      <div className="slider-item">{items && <img src={items[currentSlide]} alt="" />}</div>
       <div className="slider-buttons">
         <Button
           type="primary"

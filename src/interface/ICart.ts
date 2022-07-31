@@ -1,14 +1,31 @@
-import { IPrice } from "./IStore";
+import { IAttributeSet, IPrice, IProduct } from "./IStore";
 
-export interface ICartItems {
+export interface ICartItem {
   orderId: string;
   id: string;
-  attributes: object;
+  selectedAttributes: object;
   amount: number;
-  price: IPrice[];
+  name: string;
+  inStock: boolean;
+  gallery: string[];
+  description: string;
+  category: string;
+  attributes: IAttributeSet[];
+  prices: IPrice[];
+  brand: string;
+}
+
+export interface IMiniCartProduct {
+  id: string;
+  selectedAttributes: any;
+  amount: number;
+  name: string;
+  gallery: string[];
+  attributes: IAttributeSet[];
+  brand: string;
 }
 
 export interface ICart {
-  cart: ICartItems[];
+  cart: ICartItem[];
   total: number;
 }

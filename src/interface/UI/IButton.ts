@@ -8,6 +8,6 @@ export interface ButtonProps {
   className?: string;
   bgcolor?: string;
   selected?: boolean;
-  height?: number;
-  width?: number;
+  height?: string;
+  width?: string;
 }

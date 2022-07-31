@@ -1,4 +1,4 @@
-import { ICartItems } from "interface/ICart";
+import { ICartItem } from "interface/ICart";
 
 export const writeToLocalStorage = (name: string, object: any): void => {
   const stringifiedObject = JSON.stringify(object);
@@ -7,5 +7,5 @@ export const writeToLocalStorage = (name: string, object: any): void => {
 
 export const readFromLocalStorage = (name: string) => {
   const parsedObject = window.localStorage.getItem(name);
-  return parsedObject ? JSON.parse(parsedObject) : `can't find items with name ${name}`;
+  return parsedObject && JSON.parse(parsedObject);
 };

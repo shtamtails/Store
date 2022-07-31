@@ -1,3 +1,3 @@
 export interface CurrencyMenuProps {
-  handleCurrencyChange: Function;
+  setCurrencyModal: (state: boolean) => void;
 }

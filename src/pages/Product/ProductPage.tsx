@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 import DOMPurify from "dompurify";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
 import { addItemToCart, increaseAmount } from "store/slices/cart";
-import { ICartItems } from "interface/ICart";
+import { ICartItem } from "interface/ICart";
 import { Loader } from "components/UI/Loader/Loader";
 import { getTotalAmount } from "utils/getTotalAmount";
 
@@ -44,13 +44,20 @@ export const ProductPage: React.FC = () => {
   const handleAddToCart = () => {
     const item = {
       orderId: id + JSON.stringify(selectedAttributes), // Unique id for item with specified attributes
-      id: id,
-      attributes: selectedAttributes,
+      id,
+      selectedAttributes,
       amount: 1,
-      price: productInfo.prices,
+      prices: productInfo.prices,
+      inStock: productInfo.inStock,
+      gallery: productInfo.gallery,
+      description: productInfo.description,
+      category: productInfo.category,
+      attributes: productInfo.attributes,
+      brand: productInfo.brand,
+      name: productInfo.name,
     };
 
-    const order: ICartItems = cart.filter((el: ICartItems) => el.orderId === item.orderId)[0]; // check if order already exist
+    const order: ICartItem = cart?.filter((el: ICartItem) => el.orderId === item.orderId)[0]; // check if order already exist
     order ? dispatch(increaseAmount(item.orderId)) : dispatch(addItemToCart(item)); // if order with orderid and attributes exists increase amount, else add item
   };
 
@@ -122,8 +129,8 @@ export const ProductPage: React.FC = () => {
                         type="color"
                         bgcolor={el.value}
                         className="mg-r-sm"
-                        height={32}
-                        width={32}
+                        height="32px"
+                        width="32px"
                         onClick={() => {
                           handleOptionClick(attribute.name, el.value);
                         }}

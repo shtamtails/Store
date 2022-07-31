@@ -3,22 +3,23 @@ import { FETCH_PRODUCT_INFO_BY_ID } from "apollo/queries/storeAPI";
 import { Button } from "components/UI/Button/Button";
 import { useGetPriceById } from "hooks/apollo/useGetPriceById";
 import { useAppDispatch } from "hooks/redux";
+import { ICartItem, IMiniCartProduct } from "interface/ICart";
 import { CartItems } from "interface/IMiniCartMenu";
 import { IProduct } from "interface/IStore";
 import { useEffect } from "react";
 import { decreaseAmount, increaseAmount } from "store/slices/cart";
 
-export const MiniCartItem: React.FC<CartItems> = ({ id, selectedAttributes, amount }) => {
+export const MiniCartItem: React.FC<IMiniCartProduct> = ({
+  id,
+  selectedAttributes,
+  amount,
+  name,
+  gallery,
+  attributes,
+  brand,
+}) => {
   const dispatch = useAppDispatch();
 
-  const { data } = useQuery(FETCH_PRODUCT_INFO_BY_ID, {
-    variables: {
-      id: id,
-    },
-  });
-
-  const productInfo: IProduct = data?.product;
-  const attributes = productInfo?.attributes;
   const { price, currency } = useGetPriceById(id);
 
   const handleQtyPlusClick = () => {
@@ -33,7 +34,7 @@ export const MiniCartItem: React.FC<CartItems> = ({ id, selectedAttributes, amou
     <div className="cart-menu-card">
       <div className="cart-menu-card-info">
         <div className="cart-menu-card-name">
-          {productInfo?.brand} {productInfo?.name}
+          {brand} {name}
         </div>
         <div className="cart-menu-card-price">
           <span>
@@ -48,13 +49,27 @@ export const MiniCartItem: React.FC<CartItems> = ({ id, selectedAttributes, amou
                 attribute?.items.map((el) => (
                   <Button
                     key={el.id}
-                    size="sm"
                     type="outline"
-                    className="mg-r-sm"
+                    className="mg-r-sm "
                     color={selectedAttributes[attribute.name] === el.value ? "black" : ""}
+                    height="24px"
                   >
-                    {el.displayValue}
+                    {el.value}
                   </Button>
+                ))}
+
+              {attribute?.type === "swatch" &&
+                attribute?.items.map((el) => (
+                  <Button
+                    key={el.id}
+                    size="sm"
+                    type="color"
+                    className="mg-r-sm"
+                    bgcolor={el.value}
+                    selected={selectedAttributes[attribute.name] === el.value}
+                    width="16px"
+                    height="16px"
+                  />
                 ))}
             </div>
           </div>
@@ -83,7 +98,7 @@ export const MiniCartItem: React.FC<CartItems> = ({ id, selectedAttributes, amou
           </Button>
         </div>
         <div className="minicart-image">
-          <img src={productInfo?.gallery[0]} alt={productInfo?.name} />
+          <img src={gallery[0]} alt={name} />
         </div>
       </div>
     </div>

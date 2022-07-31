@@ -10,6 +10,7 @@ import { ProductPage } from "pages/Product/ProductPage";
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { setCart } from "store/slices/cart";
+import { setCurrency } from "store/slices/storeSettings";
 import { uid } from "uid";
 import { readFromLocalStorage, writeToLocalStorage } from "utils/localStorage";
 import "./scss/style.scss";
@@ -17,11 +18,12 @@ import "./scss/style.scss";
 export const App = () => {
   const { contentOverlay } = useAppSelector((store) => store.storeParams);
   const { cart, total } = useAppSelector((store) => store.cart);
+  const { currency } = useAppSelector((store) => store.storeParams);
   const { data: categoriesData } = useQuery(FETCH_CATEGORIES);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (cart.length > 0) {
+    if (cart?.length > 0) {
       writeToLocalStorage("cart", cart);
       writeToLocalStorage("total", total);
     }
@@ -30,12 +32,16 @@ export const App = () => {
   useEffect(() => {
     const storedCart = readFromLocalStorage("cart");
     const storedTotal = readFromLocalStorage("total");
-    dispatch(
-      setCart({
-        cart: storedCart,
-        total: storedTotal,
-      })
-    );
+    const currency = readFromLocalStorage("currency");
+    currency && dispatch(setCurrency(currency));
+    if (storedCart && storedTotal) {
+      dispatch(
+        setCart({
+          cart: storedCart,
+          total: storedTotal,
+        })
+      );
+    }
   }, [dispatch]);
 
   return (

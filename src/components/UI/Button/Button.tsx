@@ -32,8 +32,8 @@ export const Button: React.FC<ButtonProps> = ({
       }}
       style={{
         backgroundColor: bgcolor && bgcolor,
-        height: height && `${height}px`,
-        width: width && `${width}px`,
+        height: height && width,
+        width: width && width,
       }}
     >
       {children}

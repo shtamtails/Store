@@ -1,6 +1,6 @@
 import { Button } from "components/UI/Button/Button";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
-import { ICartItems } from "interface/ICart";
+import { ICartItem } from "interface/ICart";
 import { MiniCartMenuProps } from "interface/IMiniCartMenu";
 import { IPrice } from "interface/IStore";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
@@ -17,8 +17,8 @@ export const MiniCartMenu: React.FC<MiniCartMenuProps> = ({ onClose }) => {
 
   useEffect(() => {
     dispatch(resetTotal());
-    cart.map((item: ICartItems) => {
-      const prices = item.price;
+    cart?.map((item: ICartItem) => {
+      const prices = item.prices;
       const amount = item.amount;
       const price = prices.filter((price: IPrice) => price.currency.symbol === currency)[0].amount;
       dispatch(addTotal(price * amount));
@@ -35,8 +35,17 @@ export const MiniCartMenu: React.FC<MiniCartMenuProps> = ({ onClose }) => {
         <span>My Bag</span>, {totalAmount} items
       </div>
       <div className="cart-menu-items">
-        {cart?.map((item: ICartItems) => (
-          <MiniCartItem key={item.id + uid()} id={item.id} selectedAttributes={item.attributes} amount={item.amount} />
+        {cart?.map((item: ICartItem) => (
+          <MiniCartItem
+            key={item.id + uid()}
+            id={item.id}
+            selectedAttributes={item.selectedAttributes}
+            amount={item.amount}
+            name={item.name}
+            gallery={item.gallery}
+            attributes={item.attributes}
+            brand={item.brand}
+          />
         ))}
       </div>
       <div className="cart-menu-footer">

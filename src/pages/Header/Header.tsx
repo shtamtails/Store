@@ -43,11 +43,6 @@ export const Header: React.FC = () => {
     dispatch(setOverlay(!contentOverlay));
   };
 
-  const handleCurrencyChange = (currency: string) => {
-    dispatch(setCurrency(currency));
-    setCurrencyModal(false);
-  };
-
   const handleCartClose = () => {
     dispatch(setOverlay(false));
     setCartModal(false);
@@ -120,15 +115,17 @@ export const Header: React.FC = () => {
           </div>
         </header>
         <Menu parentRef={currencyIconRef} innerRef={currencyMenuRef} visible={currencyModal} offsetLeft={25}>
-          <CurrencyMenu handleCurrencyChange={handleCurrencyChange} />
+          <CurrencyMenu setCurrencyModal={setCurrencyModal} />
         </Menu>
-        <Menu parentRef={cartIconRef} innerRef={cartMenuRef} visible={cartModal} offsetLeft={300}>
-          <MiniCartMenu
-            onClose={() => {
-              handleCartClose();
-            }}
-          />
-        </Menu>
+        {cartModal && (
+          <Menu parentRef={cartIconRef} innerRef={cartMenuRef} visible={cartModal} offsetLeft={300}>
+            <MiniCartMenu
+              onClose={() => {
+                handleCartClose();
+              }}
+            />
+          </Menu>
+        )}
       </div>
     </>
   );
