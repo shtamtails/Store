@@ -4,7 +4,7 @@ export interface ButtonProps {
   type?: "primary" | "outline" | "color";
   size?: "xs" | "sm" | "md" | "lg";
   fullWidth?: boolean;
-  onClick?: Function;
+  onClick?: () => void;
   className?: string;
   bgcolor?: string;
   selected?: boolean;

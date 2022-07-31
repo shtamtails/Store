@@ -4,7 +4,7 @@
 @import "./utils.scss";
 
 @import "../components/Business/ProductCard/_CartProduct.scss";
-@import "../components/Business/ProductCard/_PreviewItem.scss";
+@import "../components/Business/ProductCard/_PreviewProduct.scss";
 @import "../components/Business/Menus/Currency/_CurrencyMenu.scss";
 @import "../components/Business/Menus/Minicart/_MinicartProduct.scss";
 @import "../components/Business/Menus/Minicart/_MinicartMenu.scss";
@@ -22,6 +22,8 @@
 @import "../pages/Content/_ContentPage.scss";
 @import "../pages/Header/_Header.scss";
 @import "../pages/Product/_ProductPage.scss";
+
+@import "../components/Business/QtyButtons";
 
 body {
   padding: 0;

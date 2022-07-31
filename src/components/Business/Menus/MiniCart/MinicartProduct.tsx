@@ -1,10 +1,9 @@
+import { QtyButtons } from "components/Business/QtyButtons";
 import { Button } from "components/UI/Button/Button";
 import { useGetPriceById } from "hooks/apollo/useGetPriceById";
-import { useAppDispatch } from "hooks/redux";
-import { IMiniCartProduct } from "interface/ICart";
-import { decreaseAmount, increaseAmount } from "store/slices/cart";
+import { IProductCard } from "interface/ICart";
 
-export const MinicartProduct: React.FC<IMiniCartProduct> = ({
+export const MinicartProduct: React.FC<IProductCard> = ({
   id,
   selectedAttributes,
   amount,
@@ -13,17 +12,7 @@ export const MinicartProduct: React.FC<IMiniCartProduct> = ({
   attributes,
   brand,
 }) => {
-  const dispatch = useAppDispatch();
-
   const { price, currency } = useGetPriceById(id);
-
-  const handleQtyPlusClick = () => {
-    dispatch(increaseAmount(id + JSON.stringify(selectedAttributes)));
-  };
-
-  const handleQtyMinusClick = () => {
-    dispatch(decreaseAmount(id + JSON.stringify(selectedAttributes)));
-  };
 
   return (
     <div className="cart-menu-card">
@@ -71,27 +60,7 @@ export const MinicartProduct: React.FC<IMiniCartProduct> = ({
         ))}
       </div>
       <div className="minicart-right-section">
-        <div className="minicart-qty-controls">
-          <Button
-            size="xs"
-            type="outline"
-            onClick={() => {
-              handleQtyPlusClick();
-            }}
-          >
-            +
-          </Button>
-          <div className="minicart-qty">{amount}</div>
-          <Button
-            size="xs"
-            type="outline"
-            onClick={() => {
-              handleQtyMinusClick();
-            }}
-          >
-            -
-          </Button>
-        </div>
+        <QtyButtons amount={amount} size="24px" padding="2px 8px" id={id} attributes={selectedAttributes} />
         <div className="minicart-image">
           <img src={gallery[0]} alt={name} />
         </div>

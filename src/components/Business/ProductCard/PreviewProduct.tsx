@@ -1,11 +1,9 @@
 import { Cart } from "components/UI/Icons/Cart";
 import { useGetPriceById } from "hooks/apollo/useGetPriceById";
-import { useAppSelector } from "hooks/redux";
 import { IPreviewProduct } from "interface/IPreviewProduct";
 
 export const PreviewProduct: React.FC<IPreviewProduct> = ({ id, image, brand, name }) => {
-  const { currency } = useAppSelector((store) => store.settings);
-  const { price } = useGetPriceById(id);
+  const { currency, loading, price } = useGetPriceById(id);
 
   return (
     <div className="content-card">
@@ -20,7 +18,13 @@ export const PreviewProduct: React.FC<IPreviewProduct> = ({ id, image, brand, na
           {brand} {name}
         </div>
         <div className="content-card-price">
-          {currency} {price}
+          {loading ? (
+            <>{currency} ...</>
+          ) : (
+            <>
+              {currency} {price}
+            </>
+          )}
         </div>
       </div>
     </div>

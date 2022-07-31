@@ -1,5 +1,5 @@
 export interface MiniCartMenuProps {
-  onClose: Function;
+  onClose?: () => void;
 }
 
 export interface CartProducts {

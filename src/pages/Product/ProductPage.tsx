@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from "hooks/redux";
 import { Loader } from "components/UI/Loader/Loader";
 import { addProductToCart, increaseAmount } from "store/slices/cart";
 import { ICartProduct } from "interface/ICart";
+import { getUniqueProductId } from "utils/getUniqueProductId";
 
 export interface ISelectedAttributes {
   [key: string]: string;
@@ -30,7 +31,7 @@ export const ProductPage: React.FC = () => {
       id: id,
     },
   });
-  const { price, currency } = useGetPriceById(id);
+  const { price, currency, loading: priceLoading } = useGetPriceById(id);
   const productInfo: IProduct = data?.product;
   const attributes = productInfo?.attributes;
   const handleOptionClick = (name: string, value: string) => {
@@ -42,7 +43,7 @@ export const ProductPage: React.FC = () => {
 
   const handleAddToCart = () => {
     const product = {
-      orderId: id + JSON.stringify(selectedAttributes), // Unique id for product with specified attributes
+      orderId: getUniqueProductId(id, selectedAttributes),
       id,
       selectedAttributes,
       amount: 1,
@@ -141,7 +142,14 @@ export const ProductPage: React.FC = () => {
             ))}
 
             <div className="product-info-price">
-              PRICE: {currency} {price}
+              PRICE:{" "}
+              {priceLoading ? (
+                <>{currency} ...</>
+              ) : (
+                <>
+                  {currency} {price}
+                </>
+              )}
               <div className="product-info-price-total"></div>
             </div>
             <div className="product-info-checkout">

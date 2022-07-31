@@ -16,13 +16,16 @@ export const Cart: React.FC = () => {
           <span>Cart</span>
         </div>
         <div className="cart-items">
-          {}
-          {cart.map((product: ICartProduct) => (
+          {cart?.map((product: ICartProduct) => (
             <CartProduct
               key={product.orderId}
               id={product.id}
-              selectedAttributes={product.attributes}
+              selectedAttributes={product.selectedAttributes}
               amount={product.amount}
+              name={product.name}
+              gallery={product.gallery}
+              attributes={product.attributes}
+              brand={product.brand}
             />
           ))}
         </div>

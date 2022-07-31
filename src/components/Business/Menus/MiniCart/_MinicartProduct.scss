@@ -28,18 +28,6 @@
 
   .minicart-right-section {
     display: flex;
-    .minicart-qty-controls {
-      margin: 2px 8px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      .minicart-qty {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 500;
-      }
-    }
 
     .minicart-image {
       img {

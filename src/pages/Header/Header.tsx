@@ -21,8 +21,6 @@ import { MinicartMenu } from "components/Business/Menus/Minicart/MinicartMenu";
 export const Header: React.FC = () => {
   const { loading, data } = useQuery(FETCH_CATEGORIES);
 
-  const { cart } = useAppSelector((store) => store.cart);
-
   const { contentOverlay, currency } = useAppSelector((store) => store.settings);
   const dispatch = useAppDispatch();
 
@@ -47,15 +45,18 @@ export const Header: React.FC = () => {
     dispatch(setOverlay(false));
     setCartModal(false);
   };
+
+  const { cart } = useAppSelector((store) => store.cart);
+  const totalAmount = useMemo(() => getTotalAmount(cart), [cart]);
+
   useClickOutside(currencyMenuRef, () => {
     setCurrencyModal(false);
   });
+
   useClickOutside(cartMenuRef, () => {
     dispatch(setOverlay(false));
     setCartModal(false);
   });
-
-  const totalAmount = useMemo(() => getTotalAmount(cart), [cart]);
 
   return (
     <>
@@ -117,15 +118,13 @@ export const Header: React.FC = () => {
         <Menu parentRef={currencyIconRef} innerRef={currencyMenuRef} visible={currencyModal} offsetLeft={25}>
           <CurrencyMenu setCurrencyModal={setCurrencyModal} />
         </Menu>
-        {cartModal && (
-          <Menu parentRef={cartIconRef} innerRef={cartMenuRef} visible={cartModal} offsetLeft={300}>
-            <MinicartMenu
-              onClose={() => {
-                handleCartClose();
-              }}
-            />
-          </Menu>
-        )}
+        <Menu parentRef={cartIconRef} innerRef={cartMenuRef} visible={cartModal} offsetLeft={300}>
+          <MinicartMenu
+            onClose={() => {
+              handleCartClose();
+            }}
+          />
+        </Menu>
       </div>
     </>
   );

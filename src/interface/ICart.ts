@@ -12,10 +12,11 @@ export interface ICartProduct {
   category: string;
   attributes: IAttributeSet[];
   prices: IPrice[];
+  price?: number;
   brand: string;
 }
 
-export interface IMiniCartProduct {
+export interface IProductCard {
   id: string;
   selectedAttributes: any;
   amount: number;

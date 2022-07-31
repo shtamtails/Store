@@ -12,7 +12,8 @@ export const CurrencyMenu: React.FC<CurrencyMenuProps> = ({ setCurrencyModal }) 
   const { data: currenciesData } = useQuery(FETCH_CURRENCIES);
   const currencies = useMemo(() => currenciesData?.currencies, [currenciesData]);
   const dispatch = useAppDispatch();
-  const handleCurrencyChange = (currency: string) => {
+
+  const handleCurrencyChange = (currency: string): void => {
     dispatch(setCurrency(currency));
     writeToLocalStorage("currency", currency);
     setCurrencyModal(false);
