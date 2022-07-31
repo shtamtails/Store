@@ -3,25 +3,25 @@
 
 @import "./utils.scss";
 
-@import "../components/Business/ItemCard/CartItem.module.scss";
-@import "../components/Business/ItemCard/PreviewItem.module.scss";
-@import "../components/Business/Menus/Currency/CurrencyMenu.module.scss";
-@import "../components/Business/Menus/MiniCart/MiniCartItem.module.scss";
-@import "../components/Business/Menus/MiniCart/MiniCartMenu.module.scss";
+@import "../components/Business/ProductCard/_CartProduct.scss";
+@import "../components/Business/ProductCard/_PreviewItem.scss";
+@import "../components/Business/Menus/Currency/_CurrencyMenu.scss";
+@import "../components/Business/Menus/Minicart/_MinicartProduct.scss";
+@import "../components/Business/Menus/Minicart/_MinicartMenu.scss";
 
-@import "../components/UI/ActionIcon/ActionIcon.module.scss";
-@import "../components/UI/Button/Button.module.scss";
-@import "../components/UI/Indicator/Indicator.module.scss";
-@import "../components/UI/Menu/Menu.module.scss";
-@import "../components/UI/Overlay/Overlay.module.scss";
-@import "../components/UI/Slider/Slider.module.scss";
-@import "../components/UI/Loader/Loader";
-@import "../components/UI/Skeleton/Skeleton";
+@import "../components/UI/ActionIcon/_ActionIcon.scss";
+@import "../components/UI/Button/_Button.scss";
+@import "../components/UI/Indicator/_Indicator.scss";
+@import "../components/UI/Menu/_Menu.scss";
+@import "../components/UI/Overlay/_Overlay.scss";
+@import "../components/UI/Slider/_Slider.scss";
+@import "../components/UI/Loader/_Loader";
+@import "../components/UI/Skeleton/_Skeleton";
 
-@import "../pages/Cart/CartPage.module.scss";
-@import "../pages/Content/ContentPage.module.scss";
-@import "../pages/Header/Header.module.scss";
-@import "../pages/Product/ProductPage.scss";
+@import "../pages/Cart/_CartPage.scss";
+@import "../pages/Content/_ContentPage.scss";
+@import "../pages/Header/_Header.scss";
+@import "../pages/Product/_ProductPage.scss";
 
 body {
   padding: 0;

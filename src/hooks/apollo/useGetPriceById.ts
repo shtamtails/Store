@@ -4,17 +4,13 @@ import { useAppSelector } from "hooks/redux";
 import { IPrice } from "interface/IStore";
 
 export const useGetPriceById = (productID: string, prices?: IPrice[]) => {
-  const {
-    loading: priceLoading,
-    error: priceError,
-    data: priceData,
-  } = useQuery(FETCH_PRICE_BY_ID, {
+  const { data: priceData } = useQuery(FETCH_PRICE_BY_ID, {
     variables: {
       input: productID,
     },
   });
 
-  const { currency } = useAppSelector((store) => store.storeParams);
+  const { currency } = useAppSelector((store) => store.settings);
   const price: number = prices
     ? prices.filter((price: IPrice) => price.currency.symbol === currency)[0].amount
     : priceData?.product.prices.filter((price: IPrice) => price.currency.symbol === currency)[0].amount;

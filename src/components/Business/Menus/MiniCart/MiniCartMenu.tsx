@@ -1,25 +1,25 @@
 import { Button } from "components/UI/Button/Button";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
-import { ICartItem } from "interface/ICart";
+import { ICartProduct } from "interface/ICart";
 import { MiniCartMenuProps } from "interface/IMiniCartMenu";
 import { IPrice } from "interface/IStore";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { addTotal, resetTotal } from "store/slices/cart";
 import { uid } from "uid";
 import { getTotalAmount } from "utils/getTotalAmount";
-import { MiniCartItem } from "./MiniCartItem";
+import { MinicartProduct } from "./MinicartProduct";
 
-export const MiniCartMenu: React.FC<MiniCartMenuProps> = ({ onClose }) => {
+export const MinicartMenu: React.FC<MiniCartMenuProps> = ({ onClose }) => {
   const { cart, total } = useAppSelector((store) => store.cart);
-  const { currency } = useAppSelector((store) => store.storeParams);
+  const { currency } = useAppSelector((store) => store.settings);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(resetTotal());
-    cart?.map((item: ICartItem) => {
-      const prices = item.prices;
-      const amount = item.amount;
+    cart?.map((product: ICartProduct) => {
+      const prices = product.prices;
+      const amount = product.amount;
       const price = prices.filter((price: IPrice) => price.currency.symbol === currency)[0].amount;
       dispatch(addTotal(price * amount));
     });
@@ -32,19 +32,19 @@ export const MiniCartMenu: React.FC<MiniCartMenuProps> = ({ onClose }) => {
   return (
     <div className="cart-menu">
       <div className="cart-menu-header">
-        <span>My Bag</span>, {totalAmount} items
+        <span>My Bag</span>, {totalAmount} products
       </div>
       <div className="cart-menu-items">
-        {cart?.map((item: ICartItem) => (
-          <MiniCartItem
-            key={item.id + uid()}
-            id={item.id}
-            selectedAttributes={item.selectedAttributes}
-            amount={item.amount}
-            name={item.name}
-            gallery={item.gallery}
-            attributes={item.attributes}
-            brand={item.brand}
+        {cart?.map((product: ICartProduct) => (
+          <MinicartProduct
+            key={product.id + uid()}
+            id={product.id}
+            selectedAttributes={product.selectedAttributes}
+            amount={product.amount}
+            name={product.name}
+            gallery={product.gallery}
+            attributes={product.attributes}
+            brand={product.brand}
           />
         ))}
       </div>

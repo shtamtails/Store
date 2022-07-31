@@ -1,15 +1,10 @@
-import { useQuery } from "@apollo/client";
-import { FETCH_PRODUCT_INFO_BY_ID } from "apollo/queries/storeAPI";
 import { Button } from "components/UI/Button/Button";
 import { useGetPriceById } from "hooks/apollo/useGetPriceById";
 import { useAppDispatch } from "hooks/redux";
-import { ICartItem, IMiniCartProduct } from "interface/ICart";
-import { CartItems } from "interface/IMiniCartMenu";
-import { IProduct } from "interface/IStore";
-import { useEffect } from "react";
+import { IMiniCartProduct } from "interface/ICart";
 import { decreaseAmount, increaseAmount } from "store/slices/cart";
 
-export const MiniCartItem: React.FC<IMiniCartProduct> = ({
+export const MinicartProduct: React.FC<IMiniCartProduct> = ({
   id,
   selectedAttributes,
   amount,

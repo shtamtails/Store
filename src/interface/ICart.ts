@@ -1,6 +1,6 @@
-import { IAttributeSet, IPrice, IProduct } from "./IStore";
+import { IAttributeSet, IPrice } from "./IStore";
 
-export interface ICartItem {
+export interface ICartProduct {
   orderId: string;
   id: string;
   selectedAttributes: object;
@@ -26,6 +26,6 @@ export interface IMiniCartProduct {
 }
 
 export interface ICart {
-  cart: ICartItem[];
+  cart: ICartProduct[];
   total: number;
 }

@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/client";
 import { FETCH_CURRENCIES } from "apollo/queries/storeAPI";
 import { uid } from "uid";
 import { CurrencyMenuProps } from "interface/ICurrencyMenu";
-import { setCurrency } from "store/slices/storeSettings";
+import { setCurrency } from "store/slices/settings";
 import { useAppDispatch } from "hooks/redux";
 import { writeToLocalStorage } from "utils/localStorage";
 

@@ -10,15 +10,14 @@ import { ProductPage } from "pages/Product/ProductPage";
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { setCart } from "store/slices/cart";
-import { setCurrency } from "store/slices/storeSettings";
+import { setCurrency } from "store/slices/settings";
 import { uid } from "uid";
 import { readFromLocalStorage, writeToLocalStorage } from "utils/localStorage";
 import "./scss/style.scss";
 
 export const App = () => {
-  const { contentOverlay } = useAppSelector((store) => store.storeParams);
+  const { contentOverlay } = useAppSelector((store) => store.settings);
   const { cart, total } = useAppSelector((store) => store.cart);
-  const { currency } = useAppSelector((store) => store.storeParams);
   const { data: categoriesData } = useQuery(FETCH_CATEGORIES);
   const dispatch = useAppDispatch();
 
@@ -55,7 +54,7 @@ export const App = () => {
           ))}
           <Route path="/" element={<ContentPage category="all" />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/item/:id" element={<ProductPage />} />
+          <Route path="/product/:id" element={<ProductPage />} />
         </Routes>
         <footer></footer>
       </div>

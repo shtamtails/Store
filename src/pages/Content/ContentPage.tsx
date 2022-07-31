@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { FETCH_PRODUCTS_BY_CATEGORY } from "apollo/queries/storeAPI";
-import { PreviewItem } from "components/Business/ItemCard/PreviewItem";
+import { PreviewProduct } from "components/Business/ProductCard/PreviewProduct";
 import { Loader } from "components/UI/Loader/Loader";
 import { IProduct } from "interface/IStore";
 import { ContentPageProps } from "interface/Pages/IContentPage";
@@ -29,8 +29,8 @@ export const ContentPage: React.FC<ContentPageProps> = ({ category }) => {
         <div className="section-title">{category}</div>
         <div className="content-items">
           {products?.map((product) => (
-            <Link key={product.id} to={`/item/${product.id}`}>
-              <PreviewItem id={product.id} image={product.gallery[0]} brand={product.brand} name={product.name} />
+            <Link key={product.id} to={`/product/${product.id}`}>
+              <PreviewProduct id={product.id} image={product.gallery[0]} brand={product.brand} name={product.name} />
             </Link>
           ))}
         </div>

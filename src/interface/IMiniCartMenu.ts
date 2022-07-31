@@ -2,7 +2,7 @@ export interface MiniCartMenuProps {
   onClose: Function;
 }
 
-export interface CartItems {
+export interface CartProducts {
   id: string;
   selectedAttributes?: any;
   amount: number;

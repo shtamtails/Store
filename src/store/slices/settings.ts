@@ -10,8 +10,8 @@ const initialState = {
   contentOverlay: false,
 };
 
-export const storeSettings = createSlice({
-  name: "storeSettings",
+export const settings = createSlice({
+  name: "settings",
   initialState,
   reducers: {
     setCurrency: (state: IStoreSettingsReducer, action: PayloadAction<string>) => {
@@ -23,4 +23,4 @@ export const storeSettings = createSlice({
   },
 });
 
-export const { setCurrency, setOverlay } = storeSettings.actions;
+export const { setCurrency, setOverlay } = settings.actions;

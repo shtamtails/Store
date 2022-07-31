@@ -3,7 +3,7 @@ import React, { useMemo, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { CurrencyMenu } from "../../components/Business/Menus/Currency/CurrencyMenu";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
-import { setCurrency, setOverlay } from "store/slices/storeSettings";
+import { setOverlay } from "store/slices/settings";
 import { ArrowDown } from "components/UI/Icons/ArrowDown";
 import { ArrowUp } from "components/UI/Icons/ArrowUp";
 import { Cart } from "components/UI/Icons/Cart";
@@ -14,16 +14,16 @@ import { useQuery } from "@apollo/client";
 import { FETCH_CATEGORIES } from "apollo/queries/storeAPI";
 import { uid } from "uid";
 import { useClickOutside } from "hooks/useClickOutside";
-import { MiniCartMenu } from "components/Business/Menus/MiniCart/MiniCartMenu";
 import { Skeleton } from "components/UI/Skeleton/Skeleton";
 import { getTotalAmount } from "utils/getTotalAmount";
+import { MinicartMenu } from "components/Business/Menus/Minicart/MinicartMenu";
 
 export const Header: React.FC = () => {
   const { loading, data } = useQuery(FETCH_CATEGORIES);
 
   const { cart } = useAppSelector((store) => store.cart);
 
-  const { contentOverlay, currency } = useAppSelector((store) => store.storeParams);
+  const { contentOverlay, currency } = useAppSelector((store) => store.settings);
   const dispatch = useAppDispatch();
 
   const [currencyModal, setCurrencyModal] = useState(false);
@@ -119,7 +119,7 @@ export const Header: React.FC = () => {
         </Menu>
         {cartModal && (
           <Menu parentRef={cartIconRef} innerRef={cartMenuRef} visible={cartModal} offsetLeft={300}>
-            <MiniCartMenu
+            <MinicartMenu
               onClose={() => {
                 handleCartClose();
               }}

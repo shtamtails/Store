@@ -7,10 +7,9 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import DOMPurify from "dompurify";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
-import { addItemToCart, increaseAmount } from "store/slices/cart";
-import { ICartItem } from "interface/ICart";
 import { Loader } from "components/UI/Loader/Loader";
-import { getTotalAmount } from "utils/getTotalAmount";
+import { addProductToCart, increaseAmount } from "store/slices/cart";
+import { ICartProduct } from "interface/ICart";
 
 export interface ISelectedAttributes {
   [key: string]: string;
@@ -42,8 +41,8 @@ export const ProductPage: React.FC = () => {
   };
 
   const handleAddToCart = () => {
-    const item = {
-      orderId: id + JSON.stringify(selectedAttributes), // Unique id for item with specified attributes
+    const product = {
+      orderId: id + JSON.stringify(selectedAttributes), // Unique id for product with specified attributes
       id,
       selectedAttributes,
       amount: 1,
@@ -57,8 +56,8 @@ export const ProductPage: React.FC = () => {
       name: productInfo.name,
     };
 
-    const order: ICartItem = cart?.filter((el: ICartItem) => el.orderId === item.orderId)[0]; // check if order already exist
-    order ? dispatch(increaseAmount(item.orderId)) : dispatch(addItemToCart(item)); // if order with orderid and attributes exists increase amount, else add item
+    const order: ICartProduct = cart?.filter((el: ICartProduct) => el.orderId === product.orderId)[0]; // check if order already exist
+    order ? dispatch(increaseAmount(product.orderId)) : dispatch(addProductToCart(product)); // if order with orderid and attributes exists increase amount, else add product
   };
 
   const handleSmallImageClick = (id: number) => {
@@ -78,11 +77,11 @@ export const ProductPage: React.FC = () => {
         </div>
       )}
       <div className="container">
-        <div className="item">
-          <div className="item-images">
-            <div className="item-images-small">
+        <div className="product">
+          <div className="product-images">
+            <div className="product-images-small">
               {productInfo?.gallery.map((el, i) => (
-                <div key={i} className="item-images-small-image">
+                <div key={i} className="product-images-small-image">
                   <img
                     key={i}
                     src={el}
@@ -94,17 +93,17 @@ export const ProductPage: React.FC = () => {
                 </div>
               ))}
             </div>
-            <div className="item-images-full">
+            <div className="product-images-full">
               <img src={productInfo?.gallery[currentImage]} alt="" />
             </div>
           </div>
-          <div className="item-info">
-            <div className="item-info-title">{productInfo?.brand}</div>
-            <div className="item-info-name">{productInfo?.name}</div>
+          <div className="product-info">
+            <div className="product-info-title">{productInfo?.brand}</div>
+            <div className="product-info-name">{productInfo?.name}</div>
             {attributes?.map((attribute) => (
-              <div key={attribute.id} className="item-info-setting-container">
+              <div key={attribute.id} className="product-info-setting-container">
                 {attribute.name}
-                <div className="item-info-setting-content">
+                <div className="product-info-setting-content">
                   {attribute?.type === "text" &&
                     attribute?.items.map((el) => (
                       <Button
@@ -141,11 +140,11 @@ export const ProductPage: React.FC = () => {
               </div>
             ))}
 
-            <div className="item-info-price">
+            <div className="product-info-price">
               PRICE: {currency} {price}
-              <div className="item-info-price-total"></div>
+              <div className="product-info-price-total"></div>
             </div>
-            <div className="item-info-checkout">
+            <div className="product-info-checkout">
               <Button
                 type="primary"
                 color="green"
@@ -158,7 +157,7 @@ export const ProductPage: React.FC = () => {
                 ADD TO CART
               </Button>
             </div>
-            <div className="item-info-description" dangerouslySetInnerHTML={sanitizedDescription()} />
+            <div className="product-info-description" dangerouslySetInnerHTML={sanitizedDescription()} />
           </div>
         </div>
       </div>

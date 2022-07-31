@@ -1,4 +1,4 @@
-export interface IPrevewItemCard {
+export interface IPreviewProduct {
   id: string;
   image: string;
   brand: string;

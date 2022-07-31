@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
 export const client = new ApolloClient({
-  uri: "http://test-store-endpoint.herokuapp.com/api",
+  uri: process.env.REACT_APP_API_LINK,
   cache: new InMemoryCache(),
 });

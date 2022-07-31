@@ -1,17 +1,17 @@
 import { useQuery } from "@apollo/client";
-import { FETCH_PRICE_BY_ID, FETCH_PRODUCT_INFO_BY_ID } from "apollo/queries/storeAPI";
+import { FETCH_PRODUCT_INFO_BY_ID } from "apollo/queries/storeAPI";
 import { Button } from "components/UI/Button/Button";
 import { Loader } from "components/UI/Loader/Loader";
 import { Slider } from "components/UI/Slider/Slider";
 import { useGetPriceById } from "hooks/apollo/useGetPriceById";
 import { useAppDispatch } from "hooks/redux";
-import { CartItems } from "interface/IMiniCartMenu";
-import { IPrice, IProduct } from "interface/IStore";
+import { CartProducts } from "interface/IMiniCartMenu";
+import { IProduct } from "interface/IStore";
 import React from "react";
 import { Link } from "react-router-dom";
 import { decreaseAmount, increaseAmount } from "store/slices/cart";
 
-export const CartItem: React.FC<CartItems> = ({ id, selectedAttributes, amount }) => {
+export const CartProduct: React.FC<CartProducts> = ({ id, selectedAttributes, amount }) => {
   const dispatch = useAppDispatch();
 
   const { data, loading } = useQuery(FETCH_PRODUCT_INFO_BY_ID, {
@@ -34,7 +34,7 @@ export const CartItem: React.FC<CartItems> = ({ id, selectedAttributes, amount }
 
   return (
     <>
-      <div className="cart-item-card">
+      <div className="cart-product-card">
         {loading ? (
           <div
             style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}
@@ -43,21 +43,19 @@ export const CartItem: React.FC<CartItems> = ({ id, selectedAttributes, amount }
           </div>
         ) : (
           <>
-            <div className="cart-item-card-left">
-              <Link to={`/item/${productInfo?.id}`}>
-                <div className="cart-item-card-brand">{productInfo?.brand}</div>
-                <div className="cart-item-card-name">{productInfo?.name}</div>
+            <div className="cart-product-card-left">
+              <Link to={`/product/${productInfo?.id}`}>
+                <div className="cart-product-card-brand">{productInfo?.brand}</div>
+                <div className="cart-product-card-name">{productInfo?.name}</div>
               </Link>
-              <div className="cart-item-card-price">
+              <div className="cart-product-card-price">
                 {currency} {price}
               </div>
               {attributes?.map((attribute) => {
-                console.log(attribute);
-                console.log(attribute.items);
                 return (
-                  <div key={attribute.id} className="cart-item-card-settings">
+                  <div key={attribute.id} className="cart-product-card-settings">
                     {attribute?.name}
-                    <div className="cart-item-card-buttons">
+                    <div className="cart-product-card-buttons">
                       {attribute?.type === "text" &&
                         attribute?.items.map((el) => (
                           <Button
@@ -88,8 +86,8 @@ export const CartItem: React.FC<CartItems> = ({ id, selectedAttributes, amount }
                 );
               })}
             </div>
-            <div className="cart-item-card-right">
-              <div className="cart-item-card-qty">
+            <div className="cart-product-card-right">
+              <div className="cart-product-card-qty">
                 <Button type="outline" size="sm" height="24px" width="24px" onClick={handleQtyPlusClick}>
                   +
                 </Button>
@@ -98,7 +96,7 @@ export const CartItem: React.FC<CartItems> = ({ id, selectedAttributes, amount }
                   -
                 </Button>
               </div>
-              <div className="cart-item-card-image">
+              <div className="cart-product-card-image">
                 <Slider items={productInfo?.gallery} />
               </div>
             </div>
