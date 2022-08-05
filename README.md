@@ -1,5 +1,12 @@
 GHPages: https://shtamtails.github.io/TEST_Store/ (alpha build, wait until graphql endpoint loads, then click to any category.) <br>
 
+## Stack:
+
+- React
+- TypeScript
+- GraphQL (Apollo)
+- Redux ToolKit
+
 ## Required:
 
 - React. Anything not written in React will be rejected automatically. This is a React position, we expect a React solution.
