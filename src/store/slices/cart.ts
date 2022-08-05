@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { useAppDispatch } from "hooks/redux";
 import { ICart, ICartProduct } from "interface/ICart";
 
 const initialState: ICart = {

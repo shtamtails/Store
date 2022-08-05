@@ -7,12 +7,29 @@
   &::-webkit-scrollbar {
     display: none;
   }
+
   .cart-menu-header {
     span {
       font-weight: 600;
     }
   }
-
+  .cart-menu-items {
+    overflow-x: hidden;
+    overflow-y: overlay;
+    max-height: 500px;
+    &::-webkit-scrollbar {
+      background-color: transparent;
+    }
+    &:hover {
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.6);
+        transition: all 0.5s ease;
+        border: 3px solid transparent;
+        border-radius: 9px;
+        background-clip: content-box;
+      }
+    }
+  }
   .cart-menu-footer {
     .cart-menu-footer-total {
       padding-top: 10px;
