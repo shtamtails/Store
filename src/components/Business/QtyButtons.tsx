@@ -1,6 +1,6 @@
 import { Button } from "components/UI/Button/Button";
 import { useAppDispatch } from "hooks/redux";
-import { decreaseAmount, increaseAmount } from "store/slices/cart";
+import { decreaseAmount, increaseAmount, removeProductFromCart } from "store/slices/cart";
 import { getUniqueProductId } from "utils/getUniqueProductId";
 
 interface QtyButtonsProps {
@@ -13,13 +13,15 @@ interface QtyButtonsProps {
 
 export const QtyButtons: React.FC<QtyButtonsProps> = ({ amount, size, id, attributes, padding }) => {
   const dispatch = useAppDispatch();
+  const uniqueId = getUniqueProductId(id, attributes);
 
   const handleQtyPlusClick = () => {
-    dispatch(increaseAmount(getUniqueProductId(id, attributes)));
+    dispatch(increaseAmount(uniqueId));
   };
 
   const handleQtyMinusClick = () => {
-    dispatch(decreaseAmount(getUniqueProductId(id, attributes)));
+    amount === 1 && dispatch(removeProductFromCart(uniqueId));
+    dispatch(decreaseAmount(uniqueId));
   };
 
   return (

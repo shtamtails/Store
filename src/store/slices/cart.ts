@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { useAppDispatch } from "hooks/redux";
 import { ICart, ICartProduct } from "interface/ICart";
 
 const initialState: ICart = {
@@ -14,14 +15,16 @@ export const cart = createSlice({
       state.cart.push(action.payload);
     },
     removeProductFromCart: (state: ICart, action: PayloadAction<string>) => {
-      state.cart = state.cart.filter((item) => item.id !== action.payload);
+      state.cart = state.cart.filter((item) => item.orderId !== action.payload);
     },
     increaseAmount: (state: ICart, action: PayloadAction<string>) => {
       state.cart.map((item) => item.orderId === action.payload && (item.amount = item.amount + 1));
     },
     decreaseAmount: (state: ICart, action: PayloadAction<string>) => {
       state.cart.map(
-        (item) => item.orderId === action.payload && (item.amount = item.amount > 1 ? item.amount - 1 : item.amount)
+        (item) =>
+          item.orderId === action.payload &&
+          (item.amount > 1 ? (item.amount = item.amount - 1) : removeProductFromCart(item.orderId))
       );
     },
     addTotal: (state: ICart, action: PayloadAction<number>) => {
