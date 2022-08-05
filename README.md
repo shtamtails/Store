@@ -1,4 +1,4 @@
-GHPages: https://shtamtails.github.io/TEST_Store/ (alpha build, wait until graphql endpoint loads, then click to any category.) <br>
+GHPages: https://shtamtails.github.io/TEST_Store/ (wait until graphql endpoint loads) <br>
 
 ## Stack:
 

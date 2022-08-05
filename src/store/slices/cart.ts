@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ICart, ICartProduct } from "interface/ICart";
+import { writeToLocalStorage } from "utils/localStorage";
 
 const initialState: ICart = {
   cart: [],
@@ -15,6 +16,10 @@ export const cart = createSlice({
     },
     removeProductFromCart: (state: ICart, action: PayloadAction<string>) => {
       state.cart = state.cart.filter((item) => item.orderId !== action.payload);
+      if (state.cart.length === 0) {
+        writeToLocalStorage("cart", []);
+        writeToLocalStorage("total", []);
+      }
     },
     increaseAmount: (state: ICart, action: PayloadAction<string>) => {
       state.cart.map((item) => item.orderId === action.payload && (item.amount = item.amount + 1));

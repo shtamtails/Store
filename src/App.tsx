@@ -25,14 +25,6 @@ export const App = () => {
   const dispatch = useAppDispatch();
   // const navigate = useNavigate();
 
-  // handle cart interactions
-  useEffect(() => {
-    if (cart?.length > 0) {
-      writeToLocalStorage("cart", cart);
-      writeToLocalStorage("total", total);
-    }
-  }, [cart, total]);
-
   // initialize stored settings/cart items from local storage
   useEffect(() => {
     const storedCart = readFromLocalStorage("cart");
@@ -48,6 +40,14 @@ export const App = () => {
       );
     }
   }, [dispatch]);
+
+  // handle cart interactions
+  useEffect(() => {
+    if (cart?.length > 0) {
+      writeToLocalStorage("cart", cart);
+      writeToLocalStorage("total", total);
+    }
+  }, [cart, total]);
 
   // handle total price and currency change
   useEffect(() => {
