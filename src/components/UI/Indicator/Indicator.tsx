@@ -1,5 +1,10 @@
-import { IndicatorProps } from "interface/UI/IIndicator";
-import React from "react";
+interface IndicatorProps {
+  children?: string | JSX.Element | number;
+  top?: number;
+  right?: number;
+  bottom?: number;
+  left?: number;
+}
 
 export const Indicator: React.FC<IndicatorProps> = ({ top, right, bottom, left, children }) => {
   return (

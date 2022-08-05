@@ -1,12 +1,21 @@
 import { Button } from "components/UI/Button/Button";
 import { useAppSelector } from "hooks/redux";
 import { ICartProduct } from "interface/ICart";
-import { MiniCartMenuProps } from "interface/IMiniCartMenu";
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { uid } from "uid";
 import { getTotalAmount } from "utils/getTotalAmount";
 import { MinicartProduct } from "./MinicartProduct";
+
+interface MiniCartMenuProps {
+  onClose?: () => void;
+}
+
+interface CartProducts {
+  id: string;
+  selectedAttributes?: any;
+  amount: number;
+}
 
 export const MinicartMenu: React.FC<MiniCartMenuProps> = ({ onClose }) => {
   const { cart, total } = useAppSelector((store) => store.cart);

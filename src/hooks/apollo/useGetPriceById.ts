@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { FETCH_PRICE_BY_ID } from "apollo/queries/storeAPI";
 import { useAppSelector } from "hooks/redux";
-import { IPrice } from "interface/IStore";
+import { IPrice } from "interface/API_Model";
 
 export const useGetPriceById = (productID: string, prices?: IPrice[]) => {
   const { loading, data: priceData } = useQuery(FETCH_PRICE_BY_ID, {

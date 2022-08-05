@@ -1,5 +1,16 @@
-import { ButtonProps } from "interface/UI/IButton";
-import React from "react";
+interface ButtonProps {
+  children?: string | JSX.Element;
+  color?: "green" | "black" | "";
+  type?: "primary" | "outline" | "color";
+  size?: "xs" | "sm" | "md" | "lg";
+  fullWidth?: boolean;
+  onClick?: () => void;
+  className?: string;
+  bgcolor?: string;
+  selected?: boolean;
+  height?: string;
+  width?: string;
+}
 
 export const Button: React.FC<ButtonProps> = ({
   children,

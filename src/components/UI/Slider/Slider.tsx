@@ -1,6 +1,9 @@
-import { SliderProps } from "interface/UI/ISlider";
 import React, { useState } from "react";
 import { Button } from "../Button/Button";
+
+interface SliderProps {
+  items: string[];
+}
 
 export const Slider: React.FC<SliderProps> = ({ items }) => {
   const [currentSlide, setCurrentSlide] = useState(0);

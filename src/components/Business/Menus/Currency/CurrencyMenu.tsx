@@ -1,12 +1,15 @@
 import { useMemo } from "react";
-import { ICurrency } from "interface/IStore";
+import { ICurrency } from "interface/API_Model";
 import { useQuery } from "@apollo/client";
 import { FETCH_CURRENCIES } from "apollo/queries/storeAPI";
 import { uid } from "uid";
-import { CurrencyMenuProps } from "interface/ICurrencyMenu";
 import { setCurrency } from "store/slices/settings";
 import { useAppDispatch } from "hooks/redux";
 import { writeToLocalStorage } from "utils/localStorage";
+
+interface CurrencyMenuProps {
+  setCurrencyModal: (state: boolean) => void;
+}
 
 export const CurrencyMenu: React.FC<CurrencyMenuProps> = ({ setCurrencyModal }) => {
   const { data: currenciesData } = useQuery(FETCH_CURRENCIES);

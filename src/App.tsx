@@ -3,7 +3,7 @@ import { FETCH_CATEGORIES } from "apollo/queries/storeAPI";
 import { Overlay } from "components/UI/Overlay/Overlay";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
 import { ICartProduct } from "interface/ICart";
-import { ICategory, IPrice } from "interface/IStore";
+import { ICategory, IPrice } from "interface/API_Model";
 import { Cart } from "pages/Cart/CartPage";
 import { ContentPage } from "pages/Content/ContentPage";
 import { Header } from "pages/Header/Header";

@@ -2,9 +2,12 @@ import { useQuery } from "@apollo/client";
 import { FETCH_PRODUCTS_BY_CATEGORY } from "apollo/queries/storeAPI";
 import { PreviewProduct } from "components/Business/ProductCard/PreviewProduct";
 import { Loader } from "components/UI/Loader/Loader";
-import { IProduct } from "interface/IStore";
-import { ContentPageProps } from "interface/Pages/IContentPage";
+import { IProduct } from "interface/API_Model";
 import { Link } from "react-router-dom";
+
+interface ContentPageProps {
+  category: string;
+}
 
 export const ContentPage: React.FC<ContentPageProps> = ({ category }) => {
   const { data, loading } = useQuery(FETCH_PRODUCTS_BY_CATEGORY, {

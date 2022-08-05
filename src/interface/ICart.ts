@@ -1,4 +1,4 @@
-import { IAttributeSet, IPrice } from "./IStore";
+import { IAttributeSet, IPrice } from "./API_Model";
 
 export interface ICartProduct {
   orderId: string;
