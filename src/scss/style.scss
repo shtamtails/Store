@@ -9,6 +9,8 @@
 @import "../components/Business/Menus/Minicart/_MinicartProduct.scss";
 @import "../components/Business/Menus/Minicart/_MinicartMenu.scss";
 
+@import "../components/Business/Modals/Checkout/CheckoutModal";
+
 @import "../components/UI/ActionIcon/_ActionIcon.scss";
 @import "../components/UI/Button/_Button.scss";
 @import "../components/UI/Indicator/_Indicator.scss";
@@ -17,6 +19,8 @@
 @import "../components/UI/Slider/_Slider.scss";
 @import "../components/UI/Loader/_Loader";
 @import "../components/UI/Skeleton/_Skeleton";
+@import "../components/UI/Modal/Modal";
+@import "../components/UI/Input/Input";
 
 @import "../pages/Cart/_CartPage.scss";
 @import "../pages/Content/_ContentPage.scss";
@@ -29,8 +33,13 @@ body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+
   font-family: "Raleway";
   overflow-y: overlay;
+}
+
+input {
+  box-sizing: border-box;
 }
 
 footer {

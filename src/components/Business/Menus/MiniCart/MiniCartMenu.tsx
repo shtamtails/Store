@@ -11,12 +11,6 @@ interface MiniCartMenuProps {
   onClose?: () => void;
 }
 
-interface CartProducts {
-  id: string;
-  selectedAttributes?: any;
-  amount: number;
-}
-
 export const MinicartMenu: React.FC<MiniCartMenuProps> = ({ onClose }) => {
   const { cart, total } = useAppSelector((store) => store.cart);
   const { currency } = useAppSelector((store) => store.settings);

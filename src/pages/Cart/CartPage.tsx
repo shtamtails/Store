@@ -1,13 +1,28 @@
+import { CheckoutModal } from "components/Business/Modals/Checkout/CheckoutModal";
 import { CartProduct } from "components/Business/ProductCard/CartProduct";
 import { Button } from "components/UI/Button/Button";
+import { Modal } from "components/UI/Modal/Modal";
 import { useAppSelector } from "hooks/redux";
+import { useClickOutside } from "hooks/useClickOutside";
 import { ICartProduct } from "interface/ICart";
+import { useRef, useState } from "react";
 
 export const Cart: React.FC = () => {
   const { cart, total } = useAppSelector((store) => store.cart);
   const { currency } = useAppSelector((store) => store.settings);
   const taxAmount = total ? Math.floor(total * 0.21 * 100) / 100 : 0;
   const totalPrice = (total + taxAmount).toFixed(2);
+
+  const [checkout, setCheckout] = useState<boolean>(false);
+  const handleCheckout = () => {
+    cart.length > 0 && setCheckout(true);
+  };
+
+  const checkoutRef = useRef(null);
+
+  useClickOutside(checkoutRef, () => {
+    setCheckout(false);
+  });
 
   return (
     <>
@@ -46,11 +61,19 @@ export const Cart: React.FC = () => {
               {currency} {totalPrice}
             </div>
           </div>
-          <Button size="sm" type="primary" color="green" fullWidth className="mg-t-sm">
+          <Button size="sm" type="primary" color="green" fullWidth className="mg-t-sm" onClick={handleCheckout}>
             Order
           </Button>
         </div>
       </div>
+      <Modal
+        width="800px"
+        visible={checkout}
+        setVisible={setCheckout}
+        title="Checkout"
+        content={<CheckoutModal />}
+        innerRef={checkoutRef}
+      />
     </>
   );
 };
