@@ -20,7 +20,9 @@ export const cart = createSlice({
       state.cart.map((item) => item.orderId === action.payload && (item.amount = item.amount + 1));
     },
     decreaseAmount: (state: ICart, action: PayloadAction<string>) => {
-      state.cart.map((item) => item.orderId === action.payload && (item.amount = item.amount - 1));
+      state.cart.map(
+        (item) => item.orderId === action.payload && (item.amount = item.amount > 1 ? item.amount - 1 : item.amount)
+      );
     },
     addTotal: (state: ICart, action: PayloadAction<number>) => {
       state.total += action.payload;
