@@ -8,8 +8,6 @@ export const FETCH_CATEGORIES = gql`
   }
 `;
 
-// !!!!! ADD NEW PARAMETER "CURRENCY" AND FETCH PRICES FOR CURRENT CURRENCY
-
 export const FETCH_PRODUCTS_BY_CATEGORY = gql`
   query getProductsByCategory($name: CategoryInput) {
     category(input: $name) {
@@ -20,6 +18,15 @@ export const FETCH_PRODUCTS_BY_CATEGORY = gql`
         inStock
         gallery
         brand
+        attributes {
+          name
+        }
+        prices {
+          currency {
+            symbol
+          }
+          amount
+        }
       }
     }
   }

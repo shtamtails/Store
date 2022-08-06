@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 interface LoaderProps {
   color?: string;
@@ -6,7 +6,7 @@ interface LoaderProps {
   thickness?: number;
 }
 
-export const Loader: React.FC<LoaderProps> = ({ color, size, thickness }) => {
+export const Loader: React.FC<LoaderProps> = memo(({ color, size, thickness }) => {
   return (
     <div
       className="loader"
@@ -19,4 +19,4 @@ export const Loader: React.FC<LoaderProps> = ({ color, size, thickness }) => {
       }}
     ></div>
   );
-};
+});

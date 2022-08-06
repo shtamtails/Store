@@ -5,9 +5,9 @@ import { Modal } from "components/UI/Modal/Modal";
 import { useAppSelector } from "hooks/redux";
 import { useClickOutside } from "hooks/useClickOutside";
 import { ICartProduct } from "interface/ICart";
-import { useRef, useState } from "react";
+import { memo, useRef, useState } from "react";
 
-export const Cart: React.FC = () => {
+export const Cart: React.FC = memo(() => {
   const { cart, total } = useAppSelector((store) => store.cart);
   const { currency } = useAppSelector((store) => store.settings);
   const taxAmount = total ? Math.floor(total * 0.21 * 100) / 100 : 0;
@@ -76,4 +76,4 @@ export const Cart: React.FC = () => {
       />
     </>
   );
-};
+});

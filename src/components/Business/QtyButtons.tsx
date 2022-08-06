@@ -1,5 +1,6 @@
 import { Button } from "components/UI/Button/Button";
 import { useAppDispatch } from "hooks/redux";
+import { memo } from "react";
 import { decreaseAmount, increaseAmount, removeProductFromCart } from "store/slices/cart";
 import { getUniqueProductId } from "utils/getUniqueProductId";
 
@@ -11,7 +12,7 @@ interface QtyButtonsProps {
   padding?: string;
 }
 
-export const QtyButtons: React.FC<QtyButtonsProps> = ({ amount, size, id, attributes, padding }) => {
+export const QtyButtons: React.FC<QtyButtonsProps> = memo(({ amount, size, id, attributes, padding }) => {
   const dispatch = useAppDispatch();
   const uniqueId = getUniqueProductId(id, attributes);
 
@@ -35,4 +36,4 @@ export const QtyButtons: React.FC<QtyButtonsProps> = ({ amount, size, id, attrib
       </Button>
     </div>
   );
-};
+});

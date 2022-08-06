@@ -1,7 +1,7 @@
 import { Button } from "components/UI/Button/Button";
 import { useAppSelector } from "hooks/redux";
 import { ICartProduct } from "interface/ICart";
-import { useMemo } from "react";
+import { memo, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { uid } from "uid";
 import { getTotalAmount } from "utils/getTotalAmount";
@@ -11,7 +11,7 @@ interface MiniCartMenuProps {
   onClose?: () => void;
 }
 
-export const MinicartMenu: React.FC<MiniCartMenuProps> = ({ onClose }) => {
+export const MinicartMenu: React.FC<MiniCartMenuProps> = memo(({ onClose }) => {
   const { cart, total } = useAppSelector((store) => store.cart);
   const { currency } = useAppSelector((store) => store.settings);
 
@@ -74,4 +74,4 @@ export const MinicartMenu: React.FC<MiniCartMenuProps> = ({ onClose }) => {
       </div>
     </div>
   );
-};
+});

@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { memo, useMemo } from "react";
 import { ICurrency } from "interface/API_Model";
 import { useQuery } from "@apollo/client";
 import { FETCH_CURRENCIES } from "apollo/queries/storeAPI";
@@ -11,7 +11,7 @@ interface CurrencyMenuProps {
   setCurrencyModal: (state: boolean) => void;
 }
 
-export const CurrencyMenu: React.FC<CurrencyMenuProps> = ({ setCurrencyModal }) => {
+export const CurrencyMenu: React.FC<CurrencyMenuProps> = memo(({ setCurrencyModal }) => {
   const { data: currenciesData } = useQuery(FETCH_CURRENCIES);
   const currencies = useMemo(() => currenciesData?.currencies, [currenciesData]);
   const dispatch = useAppDispatch();
@@ -31,4 +31,4 @@ export const CurrencyMenu: React.FC<CurrencyMenuProps> = ({ setCurrencyModal }) 
       ))}
     </div>
   );
-};
+});

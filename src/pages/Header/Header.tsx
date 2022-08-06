@@ -1,5 +1,5 @@
 import { ReactComponent as Logo } from "components/UI/Icons/Logo.svg";
-import React, { useMemo, useRef, useState } from "react";
+import React, { memo, useMemo, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { CurrencyMenu } from "../../components/Business/Menus/Currency/CurrencyMenu";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
@@ -18,7 +18,7 @@ import { Skeleton } from "components/UI/Skeleton/Skeleton";
 import { getTotalAmount } from "utils/getTotalAmount";
 import { MinicartMenu } from "components/Business/Menus/Minicart/MinicartMenu";
 
-export const Header: React.FC = () => {
+export const Header: React.FC = memo(() => {
   const { loading, data } = useQuery(FETCH_CATEGORIES);
 
   const { contentOverlay, currency } = useAppSelector((store) => store.settings);
@@ -128,4 +128,4 @@ export const Header: React.FC = () => {
       </div>
     </>
   );
-};
+});

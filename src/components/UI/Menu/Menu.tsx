@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 
 interface MenuProps {
   parentRef: React.RefObject<HTMLDivElement>;
@@ -9,7 +9,7 @@ interface MenuProps {
   innerRef?: React.RefObject<HTMLDivElement>;
 }
 
-export const Menu: React.FC<MenuProps> = ({ parentRef, visible, children, offsetLeft, offsetTop, innerRef }) => {
+export const Menu: React.FC<MenuProps> = memo(({ parentRef, visible, children, offsetLeft, offsetTop, innerRef }) => {
   const parent = parentRef.current;
   const [x, setX] = useState<number>(0);
   const [y, setY] = useState<number>(0);
@@ -41,4 +41,4 @@ export const Menu: React.FC<MenuProps> = ({ parentRef, visible, children, offset
       {children}
     </div>
   );
-};
+});

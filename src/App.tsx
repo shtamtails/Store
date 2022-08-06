@@ -8,17 +8,15 @@ import { Cart } from "pages/Cart/CartPage";
 import { ContentPage } from "pages/Content/ContentPage";
 import { Header } from "pages/Header/Header";
 import { ProductPage } from "pages/Product/ProductPage";
-import { useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { memo, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import { addTotal, resetTotal, setCart } from "store/slices/cart";
 import { setCurrency } from "store/slices/settings";
 import { uid } from "uid";
 import { readFromLocalStorage, writeToLocalStorage } from "utils/localStorage";
 import "./scss/style.scss";
-import { Modal } from "components/UI/Modal/Modal";
-import { CheckoutModal } from "components/Business/Modals/Checkout/CheckoutModal";
 
-export const App = () => {
+export const App = memo(() => {
   const { contentOverlay, currency } = useAppSelector((store) => store.settings);
   const { cart, total } = useAppSelector((store) => store.cart);
   const { data: categoriesData } = useQuery(FETCH_CATEGORIES);
@@ -82,4 +80,4 @@ export const App = () => {
       </div>
     </>
   );
-};
+});

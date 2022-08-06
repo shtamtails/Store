@@ -1,14 +1,16 @@
 import { Cart } from "components/UI/Icons/Cart";
 import { useGetPriceById } from "hooks/apollo/useGetPriceById";
+import { memo } from "react";
 
 interface IPreviewProduct {
   id: string;
   image: string;
   brand: string;
   name: string;
+  attributes: object[];
 }
 
-export const PreviewProduct: React.FC<IPreviewProduct> = ({ id, image, brand, name }) => {
+export const PreviewProduct: React.FC<IPreviewProduct> = memo(({ id, image, brand, name, attributes }) => {
   const { currency, loading, price } = useGetPriceById(id);
 
   return (
@@ -24,15 +26,9 @@ export const PreviewProduct: React.FC<IPreviewProduct> = ({ id, image, brand, na
           {brand} {name}
         </div>
         <div className="content-card-price">
-          {loading ? (
-            <>{currency} ...</>
-          ) : (
-            <>
-              {currency} {price}
-            </>
-          )}
+          {currency} {price}
         </div>
       </div>
     </div>
   );
-};
+});

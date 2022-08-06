@@ -3,7 +3,7 @@ import { FETCH_PRODUCT_INFO_BY_ID } from "apollo/queries/storeAPI";
 import { Button } from "components/UI/Button/Button";
 import { useGetPriceById } from "hooks/apollo/useGetPriceById";
 import { IProduct } from "interface/API_Model";
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { useParams } from "react-router-dom";
 import DOMPurify from "dompurify";
 import { useAppDispatch, useAppSelector } from "hooks/redux";
@@ -16,7 +16,7 @@ export interface ISelectedAttributes {
   [key: string]: string;
 }
 
-export const ProductPage: React.FC = () => {
+export const ProductPage: React.FC = memo(() => {
   const [currentImage, setCurrentImage] = useState<number>(0);
   const [selectedAttributes, setSelectedAttributes] = useState<ISelectedAttributes>({});
   // get id passed by react router
@@ -25,13 +25,13 @@ export const ProductPage: React.FC = () => {
   // get cart array from react redux
   const dispatch = useAppDispatch();
   const { cart } = useAppSelector((store) => store.cart);
+  const { price, currency, loading: priceLoading } = useGetPriceById(id);
   // get product info by id
   const { data, loading } = useQuery(FETCH_PRODUCT_INFO_BY_ID, {
     variables: {
       id: id,
     },
   });
-  const { price, currency, loading: priceLoading } = useGetPriceById(id);
   const productInfo: IProduct = data?.product;
   const attributes = productInfo?.attributes;
   const handleOptionClick = (name: string, value: string) => {
@@ -171,4 +171,4 @@ export const ProductPage: React.FC = () => {
       </div>
     </>
   );
-};
+});

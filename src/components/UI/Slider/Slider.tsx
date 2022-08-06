@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { Button } from "../Button/Button";
 
 interface SliderProps {
   items: string[];
 }
 
-export const Slider: React.FC<SliderProps> = ({ items }) => {
+export const Slider: React.FC<SliderProps> = memo(({ items }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const handlePlusClick = () => {
@@ -27,28 +27,30 @@ export const Slider: React.FC<SliderProps> = ({ items }) => {
   return (
     <div className="slider-component">
       <div className="slider-item">{items && <img src={items[currentSlide]} alt="" />}</div>
-      <div className="slider-buttons">
-        <Button
-          type="primary"
-          color="black"
-          size="xs"
-          onClick={() => {
-            handleMinusClick();
-          }}
-        >
-          {" < "}
-        </Button>
-        <Button
-          type="primary"
-          color="black"
-          size="xs"
-          onClick={() => {
-            handlePlusClick();
-          }}
-        >
-          {" > "}
-        </Button>
-      </div>
+      {items.length > 1 && (
+        <div className="slider-buttons">
+          <Button
+            type="primary"
+            color="black"
+            size="xs"
+            onClick={() => {
+              handleMinusClick();
+            }}
+          >
+            {" < "}
+          </Button>
+          <Button
+            type="primary"
+            color="black"
+            size="xs"
+            onClick={() => {
+              handlePlusClick();
+            }}
+          >
+            {" > "}
+          </Button>
+        </div>
+      )}
     </div>
   );
-};
+});
