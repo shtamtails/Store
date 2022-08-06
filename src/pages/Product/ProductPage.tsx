@@ -18,7 +18,8 @@ export interface ISelectedAttributes {
 
 export const ProductPage: React.FC = memo(() => {
   const [currentImage, setCurrentImage] = useState<number>(0);
-  const [selectedAttributes, setSelectedAttributes] = useState<ISelectedAttributes>({});
+  const [attError, setArrError] = useState<boolean>(false);
+  const [selectedAttributes, setSelectedAttributes] = useState<ISelectedAttributes | null>(null);
   // get id passed by react router
   const params = useParams();
   const id = params.id!;
@@ -42,10 +43,11 @@ export const ProductPage: React.FC = memo(() => {
   };
 
   const handleAddToCart = () => {
+    setArrError(false);
     const product = {
-      orderId: getUniqueProductId(id, selectedAttributes),
+      orderId: getUniqueProductId(id, selectedAttributes || {}),
       id,
-      selectedAttributes,
+      selectedAttributes: selectedAttributes || {},
       amount: 1,
       prices: productInfo.prices,
       inStock: productInfo.inStock,
@@ -57,8 +59,16 @@ export const ProductPage: React.FC = memo(() => {
       name: productInfo.name,
     };
 
-    const order: ICartProduct = cart?.filter((el: ICartProduct) => el.orderId === product.orderId)[0]; // check if order already exist
-    order ? dispatch(increaseAmount(product.orderId)) : dispatch(addProductToCart(product)); // if order with orderid and attributes exists increase amount, else add product
+    const selectedAttNames = Object.keys(selectedAttributes || {});
+    const productAttNames = productInfo.attributes.map((el) => el.name);
+    // check all atributes selected
+    if (selectedAttNames.length === productAttNames.length) {
+      const order: ICartProduct = cart?.filter((el: ICartProduct) => el.orderId === product.orderId)[0]; // check if order already exist
+      // if order with orderid and attributes exists increase amount, else add product
+      order ? dispatch(increaseAmount(product.orderId)) : dispatch(addProductToCart(product));
+    } else {
+      setArrError(true);
+    }
   };
 
   const handleSmallImageClick = (id: number) => {
@@ -112,7 +122,7 @@ export const ProductPage: React.FC = memo(() => {
                         size="sm"
                         type="outline"
                         className="mg-r-sm"
-                        color={selectedAttributes[attribute.name] === el.value ? "black" : ""}
+                        color={selectedAttributes && selectedAttributes[attribute.name] === el.value ? "black" : ""}
                         onClick={() => {
                           handleOptionClick(attribute.name, el.value);
                         }}
@@ -134,7 +144,7 @@ export const ProductPage: React.FC = memo(() => {
                         onClick={() => {
                           handleOptionClick(attribute.name, el.value);
                         }}
-                        selected={selectedAttributes[attribute.name] === el.value}
+                        selected={selectedAttributes?.[attribute.name] === el.value}
                       />
                     ))}
                 </div>
@@ -164,6 +174,11 @@ export const ProductPage: React.FC = memo(() => {
               >
                 ADD TO CART
               </Button>
+              {attError && (
+                <div className="flex jcc aic mg-t-sm" style={{ color: "red" }}>
+                  Select product attribute!
+                </div>
+              )}
             </div>
             <div className="product-info-description" dangerouslySetInnerHTML={sanitizedDescription()} />
           </div>
