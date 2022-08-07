@@ -1,6 +1,6 @@
 {
-  "homepage": "https://shtamtails.github.io/TEST_Store/",
-  "name": "scandiweb-test-assignment",
+  "homepage": "https://shtamtails.github.io/Store/",
+  "name": "store",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
